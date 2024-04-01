@@ -13,7 +13,7 @@ const TrendingSlider = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await fetchData('/data/videos', 5, 5, null, null, null, 'trending');
+        const data = await fetchData('/data/videos_', 5, 5, null, null, null, 'trending');
         data.status && setVideos(prev => ([...prev, ...data.videos]))
       } catch (error) {
         console.log(error)
