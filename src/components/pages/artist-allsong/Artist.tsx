@@ -115,7 +115,7 @@ const Artist = () => {
               </Link>
 
               <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20 mb-16 fw-500 d-block">
-                <span><img src='./img22/img/social-icon__soundcloud.svg' alt="Logo" width="30" height="30" ></img></span>
+                <span><img src='https://ersy.com/img/social-icon__soundcloud.svg' alt="Logo" width="30" height="30" ></img></span>
               </Link>
             </div>
 
