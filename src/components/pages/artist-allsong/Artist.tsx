@@ -71,7 +71,8 @@ const Artist = () => {
             width={390}
             height={390}
             style={{ borderRadius: '50%' }}
-            src={`/img22/img/profile/${artist.img_}`}
+            src={`https://ersy.com/img/profile/${artist.img_}`}
+            // src={`/img22/img/profile/${artist.img_}`}
             priority={true}
             alt=""
             className="flex-shrink-0 h-auto"

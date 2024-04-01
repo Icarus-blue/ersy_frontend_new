@@ -35,8 +35,8 @@ const ArtistsSliderCard = ({ img_, name_, id_, views, monthly_listeners, faceboo
       <div className="thumb ralt overhid transition">
         <Link href={`/artist-allsong?artist=${id_}`} className="white">
           <Image
-            // src={`https://ersy.com/img/profile/${img_}`}
-            src={`/img22/img/profile/${img_}`}
+            src={`https://ersy.com/img/profile/${img_}`}
+            // src={`/img22/img/profile/${img_}`}
             width={300}
             height={300}
             style={{ borderRadius: '50%', justifyContent: 'center' }}
