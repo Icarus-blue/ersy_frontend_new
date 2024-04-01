@@ -397,7 +397,9 @@ const PopularArtists = () => {
                 <button className="cmn__simple2"
                   onClick={async () => {
                     console.log(artists.length);
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32, 32)
+
+                    const str = JSON.stringify(queryobj);
+                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
                     data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
                   }}
                 >
@@ -427,7 +429,8 @@ const PopularArtists = () => {
               <div className="text-center mt-40">
                 <button className="cmn__simple2"
                   onClick={async () => {
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32, 32)
+                    const str = JSON.stringify(queryobj);
+                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
                     data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
                   }}
                 >Load More</button>
@@ -456,7 +459,8 @@ const PopularArtists = () => {
               <div className="text-center mt-40">
                 <button className="cmn__simple2"
                   onClick={async () => {
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32, 32)
+                    const str = JSON.stringify(queryobj);
+                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
                     data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
                   }}
                 >Load More</button>
@@ -485,7 +489,8 @@ const PopularArtists = () => {
               <div className="text-center mt-40">
                 <button className="cmn__simple2"
                   onClick={async () => {
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32, 32)
+                    const str = JSON.stringify(queryobj);
+                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
                     data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
                   }}
                 >Load More</button>
@@ -514,7 +519,8 @@ const PopularArtists = () => {
               <div className="text-center mt-40">
                 <button className="cmn__simple2"
                   onClick={async () => {
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32, 32)
+                    const str = JSON.stringify(queryobj);
+                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
                     data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
                   }}
                 >Load More</button>
@@ -543,7 +549,8 @@ const PopularArtists = () => {
               <div className="text-center mt-40">
                 <button className="cmn__simple2"
                   onClick={async () => {
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32, 32)
+                    const str = JSON.stringify(queryobj);
+                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
                     data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
                   }}
                 >Load More</button>
