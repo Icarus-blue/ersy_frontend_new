@@ -25,11 +25,6 @@ const sortMode = [
 
 const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
     const [isLoading, setIsLoading] = useState(false)
-    const [currentPage1, setCurrentPage1] = useState(0)
-    const [currentPage2, setCurrentPage2] = useState(0)
-    const [currentPage3, setCurrentPage3] = useState(0)
-    const [currentPage4, setCurrentPage4] = useState(0)
-    const [currentPage5, setCurrentPage5] = useState(0)
     const [query, setQuery] = useState('')
     const [allsongs, setAllSongs] = useState(null)
     const [musicVidoes, setMusicVidoes] = useState(null)
@@ -310,9 +305,8 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                             <Link href="#" onClick={async (e) => {
                                 e.preventDefault()
                                 setIsLoading(true)
-                                const data = await fetchData('/data/videos', currentPage1 === 0 ? 1 : currentPage1 + 1, 12, artist)
+                                const data = await fetchData('/data/videos', allsongs.length <= 12 ? 2 : allsongs.length / 12 + 1, 12, artist)
                                 setAllSongs((prev: any) => ([...prev, ...data.videos]))
-                                setCurrentPage1((prev: any) => prev + 1)
                                 setIsLoading(false)
                             }} className="cmn__simple2" >
                                 {isLoading ? 'loading...' : 'Load More'}
@@ -344,9 +338,8 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                 <Link href="#" onClick={async (e) => {
                                     e.preventDefault()
                                     setIsLoading(true)
-                                    const data = await fetchData('/data/videos', currentPage2 === 0 ? 1 : currentPage2 + 1, 12, artist)
+                                    const data = await fetchData('/data/videos', musicVidoes.length <= 12 ? 2 : musicVidoes.length / 12 + 1, 12, artist)
                                     setMusicVidoes((prev: any) => ([...prev, ...data.videos]))
-                                    setCurrentPage2((prev: any) => prev + 1)
                                     setIsLoading(false)
                                 }} className="cmn__simple2" >
                                     {isLoading ? 'loading...' : 'Load More'}
@@ -402,9 +395,8 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                 <Link href="#" onClick={async (e) => {
                                     e.preventDefault()
                                     setIsLoading(true)
-                                    const data = await fetchData('/data/interviews', currentPage3 === 0 ? 1 : currentPage3 + 1, 12, artist)
+                                    const data = await fetchData('/data/interviews', interviews.length <= 12 ? 2 : interviews.length / 12 + 1, 12, artist)
                                     setInterviews((prev: any) => ([...prev, ...data.videos]))
-                                    setCurrentPage3((prev: any) => prev + 1)
                                     setIsLoading(false)
                                 }} className="cmn__simple2" >
                                     {isLoading ? 'loading...' : 'Load More'}
@@ -436,9 +428,8 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                             <Link href="#" onClick={async (e) => {
                                 e.preventDefault()
                                 setIsLoading(true)
-                                const data = await fetchData('/data/gallery_artist', currentPage4 + 1, 12, artist)
+                                const data = await fetchData('/data/gallery_artist', gallery.length <= 12 ? 2 : gallery.length / 12 + 1, 12, artist)
                                 setGallery((prev: any) => ([...prev, ...data.gallerys]))
-                                setCurrentPage4((prev: any) => prev + 1)
                                 setIsLoading(false)
                             }} className="cmn__simple2" >
                                 {isLoading ? 'loading...' : 'Load More'}
@@ -464,15 +455,6 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                     ))}
                                 </>)}
 
-                        </div>
-                    </div>
-                    <div
-                        className="tab-pane fade"
-                        id="jazz-tab-pane"
-                        role="tabpanel"
-                        aria-labelledby="contact-tab"
-                    >
-                        <div className="row g-4">
                         </div>
                     </div>
                 </div>
