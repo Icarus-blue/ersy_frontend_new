@@ -48,7 +48,6 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
             const formData = new FormData(e.target)
             if (formData.get('query') == '') {
                 const data = await fetchData('/data/getallsongs', 1, 12, artist)
-                if (!data.status) return false
                 setAllSongs(data.videos)
                 setIsLoading(false)
             } else {
@@ -58,6 +57,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                 }
                 const str = JSON.stringify(query);
                 const data = await fetchData('/data/getallsongsbysearch', 1, 50, str)
+                if (!data.status) return false
                 setAllSongs(data.videos)
                 setIsLoading(false)
             }
@@ -68,10 +68,12 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
 
     useEffect(() => {
         const str = JSON.stringify(queryobj);
+        setIsLoading(true)
         const getData = async () => {
             let data = await fetchData('/data/getallsongsbysort', 1, 32, str)
             data.videos && setAllSongs(data.videos)
         }
+        setIsLoading(false)
         getData()
     }, [queryobj])
 
@@ -369,23 +371,24 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                                     <VideoCard key={id} {...props} link="album-allsong" />
                                                 </div>
                                             ))}
+                                            <div className="text-center mt-60 " >
+                                                <Link href="#" onClick={async (e) => {
+                                                    e.preventDefault()
+                                                    setIsLoading(true)
+                                                    const data = await fetchData('/data/videos', allsongs.length <= 12 ? 2 : allsongs.length / 12 + 1, 12, artist)
+                                                    setAllSongs((prev: any) => ([...prev, ...data.videos]))
+                                                    setIsLoading(false)
+                                                }} className="cmn__simple2" >
+                                                    {isLoading ? 'loading...' : 'Load More'}
+                                                </Link>
+                                            </div>
                                         </>
                                     )}
                                 </>
                             )}
 
                         </div>
-                        <div className="text-center mt-60 " >
-                            <Link href="#" onClick={async (e) => {
-                                e.preventDefault()
-                                setIsLoading(true)
-                                const data = await fetchData('/data/videos', allsongs.length <= 12 ? 2 : allsongs.length / 12 + 1, 12, artist)
-                                setAllSongs((prev: any) => ([...prev, ...data.videos]))
-                                setIsLoading(false)
-                            }} className="cmn__simple2" >
-                                {isLoading ? 'loading...' : 'Load More'}
-                            </Link>
-                        </div>
+
                     </div>
                     <div
                         className="tab-pane fade"
