@@ -9,9 +9,9 @@ type Props = {
 
 const ArtistGalleryCard = ({ thumbnail, id_, sourceurl, date }: Props) => {
 
-    function extractDate(datetimeString: any) {
+    function extractDate(datetimeString: Date) {
         var dateObject = new Date(datetimeString);
-        var formattedDate = dateObject.toISOString().split('T')[0];
+        var formattedDate = dateObject?.toISOString().split('T')[0];
         return formattedDate;
     }
 

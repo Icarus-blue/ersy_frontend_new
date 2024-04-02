@@ -109,17 +109,14 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
     }, [queryobj1])
 
     useEffect(() => {
-        console.log(queryobj2);
-        
-        // const str = JSON.stringify(queryobj1);
-        // setIsLoading(true)
-        // const getData = async () => {
-        //     let data = await fetchData('/data/getallsongsbysort', 1, 32, str, null, null, 'interviews')
-        //     data.videos && setAllSongs(data.videos)
-        //     setInterviews(data.videos)
-        // }
-        // setIsLoading(false)
-        // getData()
+        const str = JSON.stringify(queryobj2);
+        setIsLoading(true)
+        const getData = async () => {
+            let data = await fetchData('/data/getgallerybysort', 1, 32, str)
+            setGallery(data.gallery)
+        }
+        setIsLoading(false)
+        getData()
     }, [queryobj2])
 
     const handleSearchMusicVideos = async (e: ChangeEvent<HTMLFormElement>) => {
@@ -329,7 +326,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                     aria-selected="true"
                                     aria-label="home-tab"
                                 >
-                                    ALL SONGS
+                                    All Songs
                                 </button>
                             </li>
                         </>)
@@ -348,7 +345,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                     aria-selected="false"
                                     aria-label="profile-tab"
                                 >
-                                    MUSIC VIDEOS
+                                    Music Videos
                                 </button>
                             </li>
                         </>
@@ -367,7 +364,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                     aria-selected="false"
                                     aria-label="profile-tab"
                                 >
-                                    ALBUMS
+                                    Albums
                                 </button>
                             </li>
                         </>
@@ -386,7 +383,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                     aria-controls="contact-tab-pane"
                                     aria-selected="false"
                                 >
-                                    INTERVEIWS
+                                    Interviews
                                 </button>
                             </li>
                         </>
@@ -405,7 +402,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                     aria-selected="true"
                                     aria-label="home-tab"
                                 >
-                                    GALLERY
+                                    Gallery
                                 </button>
                             </li>
                         </>
@@ -424,7 +421,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                     aria-selected="false"
                                     aria-label="profile-tab"
                                 >
-                                    COLLABORATIONS
+                                    Colloborations
                                 </button>
                             </li>
                         </>
@@ -443,7 +440,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                     aria-controls="jazz-tab-pane"
                                     aria-selected="false"
                                 >
-                                    TWITTER
+                                    Twitter
                                 </button>
                             </li>
                         </>

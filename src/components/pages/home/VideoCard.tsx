@@ -29,7 +29,7 @@ type Props = {
 function VideoCard({ img_, title, video_id, uploader, views, release_date, duration }: Props) {
     const dispatch = useDispatch()
 
-    function extractDate(datetimeString: any) {
+    function extractDate(datetimeString: Date) {
         var dateObject = new Date(datetimeString);
         var formattedDate = dateObject.toISOString().split('T')[0];
         return formattedDate;
