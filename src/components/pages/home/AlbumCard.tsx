@@ -20,16 +20,11 @@ type Props = {
 function AlbumCard({ img_, artist_name, name_, label, release_date }: Props) {
 
     const dispatch = useDispatch()
-    const formatNumber = (num: any): string => {
-        if (num >= 1_000_000_000) {
-            return (num / 1_000_000_000).toFixed(1) + 'B';
-        } else if (num >= 1_000_000) {
-            return (num / 1_000_000).toFixed(1) + 'M';
-        } else if (num >= 1_000) {
-            return (num / 1_000).toFixed(1) + 'K';
-        } else {
-            return num.toString();
-        }
+
+    function extractDate(datetimeString: any) {
+        var dateObject = new Date(datetimeString);
+        var formattedDate = dateObject.toISOString().split('T')[0];
+        return formattedDate;
     }
 
     return (
@@ -59,7 +54,7 @@ function AlbumCard({ img_, artist_name, name_, label, release_date }: Props) {
                         {name_}
                     </h5>
                     <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
-                        {formatNumber(release_date)}
+                        {extractDate(release_date)}
                     </span>
                 </div>
                 <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>

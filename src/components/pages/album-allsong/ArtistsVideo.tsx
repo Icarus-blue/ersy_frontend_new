@@ -29,6 +29,8 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [query1, setQuery1] = useState('')
     const [query2, setQuery2] = useState('')
+    const [query3, setQuery3] = useState('')
+    const [query4, setQuery4] = useState('')
     const [allsongs, setAllSongs] = useState(null)
     const [musicVidoes, setMusicVideos] = useState(null)
     const [interviews, setInterviews] = useState(null)
@@ -110,11 +112,32 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
         }
     }
 
-    const handleSearchAlbums = () => {
+    const handleSearchAlbums = async (e: ChangeEvent<HTMLFormElement>) => {
         try {
+            setIsLoading(true)
+            e.preventDefault()
+            const formData = new FormData(e.target)
+            console.log(formData.get('query'));
+            if (formData.get('query') == '') {
+                const data = await fetchData('/data/albums', 1, 12, artist)
+                setAlbums(data.albums)
+                setIsLoading(false)
+            } else {
+                const query = {
+                    q: formData.get('query'),
+                    artist: artist
+                }
+                const str = JSON.stringify(query);
+                const data = await fetchData('/data/getallalbumsbysearch', 1, 50, str)
 
+                if (!data.status) {
+                    setIsLoading(false)
+                }
+                setAlbums(data.albums)
+                setIsLoading(false)
+            }
         } catch (error) {
-
+            console.log(error);
         }
     }
 
@@ -126,11 +149,31 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
         }
     }
 
-    const handleSearchInterviews = () => {
+    const handleSearchInterviews = async (e: ChangeEvent<HTMLFormElement>) => {
         try {
+            setIsLoading(true)
+            e.preventDefault()
+            const formData = new FormData(e.target)
+            if (formData.get('query') == '') {
+                const data = await fetchData('/data/getallsongs', 1, 12, artist, null, null, 'interviews')
+                setInterviews(data.videos)
+                setIsLoading(false)
+            } else {
+                const query = {
+                    q: formData.get('query'),
+                    artist: artist
+                }
+                const str = JSON.stringify(query);
+                const data = await fetchData('/data/getallsongsbysearch', 1, 50, str, null, null, 'interviews')
 
+                if (!data.status) {
+                    setIsLoading(false)
+                }
+                setInterviews(data.videos)
+                setIsLoading(false)
+            }
         } catch (error) {
-
+            console.log(error);
         }
     }
 
@@ -485,12 +528,13 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="profile-tab"
                     >
+                        <h3>Albums</h3>
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <form
                                 onSubmit={handleSearchAlbums}
                                 className="d-flex align-items-center justify-content-between"
                             >
-                                {/* <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Albums' /> */}
+                                <input type="text" name="query" onChange={(e) => setQuery3(e.target.value)} value={query3} placeholder='Search Albums' />
                                 <button type="submit" aria-label="submit button">
                                     <IconSearch />
                                 </button>
@@ -503,16 +547,24 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         </div>
                         <div className="row g-4">
                             <div className="row g-4">
-                                {albums && (
+                                {isLoading ? (
+                                    <div className="w100 d-flex justify-content-center">
+                                        <Loader />
+                                    </div>
+                                ) : (
                                     <>
-                                        {albums.map(({ id, ...props }: any) => (
-                                            <div
-                                                key={id}
-                                                className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6"
-                                            >
-                                                <AlbumCard key={id} {...props} link="album-allsong" />
-                                            </div>
-                                        ))}
+                                        {albums && (
+                                            <>
+                                                {albums.map(({ id, ...props }: any) => (
+                                                    <div
+                                                        key={id}
+                                                        className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6"
+                                                    >
+                                                        <AlbumCard key={id} {...props} link="album-allsong" />
+                                                    </div>
+                                                ))}
+                                            </>
+                                        )}
                                     </>
                                 )}
                             </div>
@@ -524,12 +576,13 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="contact-tab"
                     >
+                        <h3>Interviews</h3>
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <form
                                 onSubmit={handleSearchInterviews}
                                 className="d-flex align-items-center justify-content-between"
                             >
-                                {/* <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Interviews' /> */}
+                                <input type="text" name="query" onChange={(e) => setQuery4(e.target.value)} value={query4} placeholder='Search Interviews' />
                                 <button type="submit" aria-label="submit button">
                                     <IconSearch />
                                 </button>
