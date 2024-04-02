@@ -1,6 +1,17 @@
 'use client'
 import api from "@/lib/api";
-import { IconBrandFacebook, IconBrandFacebookFilled, IconBrandInstagram, IconBrandWikipedia, IconBrandYoutube, IconBrandYoutubeFilled, IconBrandTwitterFilled } from "@tabler/icons-react";
+import {
+  IconBrandFacebook,
+  IconBrandFacebookFilled,
+  IconBrandInstagram,
+  IconBrandWikipedia,
+  IconBrandYoutube,
+  IconBrandYoutubeFilled,
+  IconBrandTwitterFilled,
+  IconArrowNarrowRight,
+  IconChevronLeft,
+  IconChevronRight,
+} from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -63,7 +74,6 @@ const Artist = () => {
 
   if (!artist) return
   return (
-    // <!--genres section-->
     <section className="genres__section custom__space pr-24 pl-24 pb-60">
       <div className="container-fluid">
         <div className="artist__allhead d-flex">
@@ -72,7 +82,6 @@ const Artist = () => {
             height={390}
             style={{ borderRadius: '50%' }}
             src={`https://ersy.com/img/profile/${artist.img_}`}
-            // src={`/img22/img/profile/${artist.img_}`}
             priority={true}
             alt=""
             className="flex-shrink-0 h-auto"
@@ -120,6 +129,13 @@ const Artist = () => {
             </div>
 
           </div>
+          <Link
+            href="artists"
+            className="view__btn white d-flex align-items-end gap-2"
+          >
+            View All
+            <IconArrowNarrowRight />
+          </Link>
         </div>
       </div>
     </section>

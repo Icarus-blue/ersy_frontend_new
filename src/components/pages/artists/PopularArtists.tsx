@@ -9,6 +9,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import api from "@/lib/api";
+import Loader from "@/components/shared/Loader";
 
 const sortMode = [
   { label: "Most Item First" },
@@ -26,11 +27,6 @@ const sortMode = [
   { label: "Following" },
 ];
 
-const genres = [
-  { label: "All Artists" },
-  { label: "New Artists" },
-  { label: "Expert Artists" },
-];
 const PopularArtists = () => {
 
   const [artists, setArtists] = useState([])
@@ -52,10 +48,17 @@ const PopularArtists = () => {
   });
 
   useEffect(() => {
+    setIsLoading(true)
     const str = JSON.stringify(queryobj);
     const getData = async () => {
-      let data = await fetchData('/data/artists', 1, 32, str)
-      data.artists && setArtists(data.artists)
+      try {
+        let data = await fetchData('/data/artists', 1, 32, str)
+        data.artists && setArtists(data.artists)
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false)
+      }
     }
     getData()
   }, [queryobj])
@@ -82,14 +85,20 @@ const PopularArtists = () => {
   const handleSortChange = (newSortMode: { label: string }) => {
     setQueryObj(prevState => ({
       ...prevState,
-      sortMode: newSortMode.label, // assuming you want the sortMode in a specific format
+      sortMode: newSortMode.label,
     }));
   };
 
   useEffect(() => {
     const getData = async () => {
-      let data = await fetchData('/data/artists', 1, 12)
-      data.artists && setArtists(data.artists)
+      try {
+        let data = await fetchData('/data/artists', 1, 12)
+        data.artists && setArtists(data.artists)
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false)
+      }
     }
     getData()
   }, [])
@@ -254,7 +263,6 @@ const PopularArtists = () => {
           </div>
         </div>
       </div>
-
       <div className="trending__selected mb-30 d-flex align-items-center justify-content-center justify-content-lg-between">
         <div className="select__lefts d-flex align-items-center">
           <form
@@ -380,31 +388,41 @@ const PopularArtists = () => {
             aria-labelledby="home-tab"
           >
             <div className="row g-4">
-
-              {artists && (
+              {!isLoading ? (
                 <>
-                  {artists.map((props) => (
-                    <div
-                      key={props.id_}
-                      className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                  {artists && (
+                    <>
+                      {artists.map((props) => (
+                        <div
+                          key={props.id_}
+                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                        >
+                          <ArtistsSliderCard {...props} />
+                        </div>
+                      ))}
+                    </>
+                  )}
+                  <div className="text-center mt-40">
+                    <button className="cmn__simple2"
+                      onClick={async () => {
+                        console.log(artists.length);
+
+                        const str = JSON.stringify(queryobj);
+                        const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
+                        data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
+                      }}
                     >
-                      <ArtistsSliderCard {...props} />
-                    </div>
-                  ))}
+                      Load More</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="w100 d-flex justify-content-center">
+                    <Loader />
+                  </div>
                 </>
               )}
-              <div className="text-center mt-40">
-                <button className="cmn__simple2"
-                  onClick={async () => {
-                    console.log(artists.length);
 
-                    const str = JSON.stringify(queryobj);
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
-                    data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
-                  }}
-                >
-                  Load More</button>
-              </div>
             </div>
           </div>
           <div
@@ -414,27 +432,40 @@ const PopularArtists = () => {
             aria-labelledby="profile-tab"
           >
             <div className="row g-4">
-              {artists && (
+              {!isLoading ? (
                 <>
-                  {artists.map((props) => (
-                    <div
-                      key={props.id_}
-                      className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                  {artists && (
+                    <>
+                      {artists.map((props) => (
+                        <div
+                          key={props.id_}
+                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                        >
+                          <ArtistsSliderCard {...props} />
+                        </div>
+                      ))}
+                    </>
+                  )}
+                  <div className="text-center mt-40">
+                    <button className="cmn__simple2"
+                      onClick={async () => {
+                        console.log(artists.length);
+
+                        const str = JSON.stringify(queryobj);
+                        const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
+                        data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
+                      }}
                     >
-                      <ArtistsSliderCard {...props} />
-                    </div>
-                  ))}
+                      Load More</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="w100 d-flex justify-content-center">
+                    <Loader />
+                  </div>
                 </>
               )}
-              <div className="text-center mt-40">
-                <button className="cmn__simple2"
-                  onClick={async () => {
-                    const str = JSON.stringify(queryobj);
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
-                    data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
-                  }}
-                >Load More</button>
-              </div>
             </div>
           </div>
           <div
@@ -444,27 +475,40 @@ const PopularArtists = () => {
             aria-labelledby="contact-tab"
           >
             <div className="row g-4">
-              {artists && (
+              {!isLoading ? (
                 <>
-                  {artists.map((props) => (
-                    <div
-                      key={props.id_}
-                      className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                  {artists && (
+                    <>
+                      {artists.map((props) => (
+                        <div
+                          key={props.id_}
+                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                        >
+                          <ArtistsSliderCard {...props} />
+                        </div>
+                      ))}
+                    </>
+                  )}
+                  <div className="text-center mt-40">
+                    <button className="cmn__simple2"
+                      onClick={async () => {
+                        console.log(artists.length);
+
+                        const str = JSON.stringify(queryobj);
+                        const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
+                        data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
+                      }}
                     >
-                      <ArtistsSliderCard {...props} />
-                    </div>
-                  ))}
+                      Load More</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="w100 d-flex justify-content-center">
+                    <Loader />
+                  </div>
                 </>
               )}
-              <div className="text-center mt-40">
-                <button className="cmn__simple2"
-                  onClick={async () => {
-                    const str = JSON.stringify(queryobj);
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
-                    data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
-                  }}
-                >Load More</button>
-              </div>
             </div>
           </div>
           <div
@@ -474,27 +518,40 @@ const PopularArtists = () => {
             aria-labelledby="contact-tab"
           >
             <div className="row g-4">
-              {artists && (
+              {!isLoading ? (
                 <>
-                  {artists.map((props) => (
-                    <div
-                      key={props.id_}
-                      className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                  {artists && (
+                    <>
+                      {artists.map((props) => (
+                        <div
+                          key={props.id_}
+                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                        >
+                          <ArtistsSliderCard {...props} />
+                        </div>
+                      ))}
+                    </>
+                  )}
+                  <div className="text-center mt-40">
+                    <button className="cmn__simple2"
+                      onClick={async () => {
+                        console.log(artists.length);
+
+                        const str = JSON.stringify(queryobj);
+                        const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
+                        data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
+                      }}
                     >
-                      <ArtistsSliderCard {...props} />
-                    </div>
-                  ))}
+                      Load More</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="w100 d-flex justify-content-center">
+                    <Loader />
+                  </div>
                 </>
               )}
-              <div className="text-center mt-40">
-                <button className="cmn__simple2"
-                  onClick={async () => {
-                    const str = JSON.stringify(queryobj);
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
-                    data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
-                  }}
-                >Load More</button>
-              </div>
             </div>
           </div>
           <div
@@ -504,27 +561,40 @@ const PopularArtists = () => {
             aria-labelledby="contact-tab"
           >
             <div className="row g-4">
-              {artists && (
+              {!isLoading ? (
                 <>
-                  {artists.map((props) => (
-                    <div
-                      key={props.id_}
-                      className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                  {artists && (
+                    <>
+                      {artists.map((props) => (
+                        <div
+                          key={props.id_}
+                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                        >
+                          <ArtistsSliderCard {...props} />
+                        </div>
+                      ))}
+                    </>
+                  )}
+                  <div className="text-center mt-40">
+                    <button className="cmn__simple2"
+                      onClick={async () => {
+                        console.log(artists.length);
+
+                        const str = JSON.stringify(queryobj);
+                        const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
+                        data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
+                      }}
                     >
-                      <ArtistsSliderCard {...props} />
-                    </div>
-                  ))}
+                      Load More</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="w100 d-flex justify-content-center">
+                    <Loader />
+                  </div>
                 </>
               )}
-              <div className="text-center mt-40">
-                <button className="cmn__simple2"
-                  onClick={async () => {
-                    const str = JSON.stringify(queryobj);
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
-                    data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
-                  }}
-                >Load More</button>
-              </div>
             </div>
           </div>
           <div
@@ -534,27 +604,40 @@ const PopularArtists = () => {
             aria-labelledby="contact-tab"
           >
             <div className="row g-4">
-              {artists && (
+              {!isLoading ? (
                 <>
-                  {artists.map((props) => (
-                    <div
-                      key={props.id_}
-                      className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                  {artists && (
+                    <>
+                      {artists.map((props) => (
+                        <div
+                          key={props.id_}
+                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                        >
+                          <ArtistsSliderCard {...props} />
+                        </div>
+                      ))}
+                    </>
+                  )}
+                  <div className="text-center mt-40">
+                    <button className="cmn__simple2"
+                      onClick={async () => {
+                        console.log(artists.length);
+
+                        const str = JSON.stringify(queryobj);
+                        const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
+                        data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
+                      }}
                     >
-                      <ArtistsSliderCard {...props} />
-                    </div>
-                  ))}
+                      Load More</button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="w100 d-flex justify-content-center">
+                    <Loader />
+                  </div>
                 </>
               )}
-              <div className="text-center mt-40">
-                <button className="cmn__simple2"
-                  onClick={async () => {
-                    const str = JSON.stringify(queryobj);
-                    const data = await fetchData('/data/artists', (artists.length <= 32) ? 2 : artists.length / 32 + 1, 32, str)
-                    data.status ? setArtists(prev => ([...prev, ...data.artists])) : null
-                  }}
-                >Load More</button>
-              </div>
             </div>
           </div>
         </div>
