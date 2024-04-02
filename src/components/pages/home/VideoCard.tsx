@@ -23,10 +23,27 @@ type Props = {
     added_date?: Date;
     category?: string;
     views?: string;
+    duration?: number
 }
 
-function VideoCard({ img_, title, video_id, uploader, views }: Props) {
+function VideoCard({ img_, title, video_id, uploader, views, release_date, duration }: Props) {
     const dispatch = useDispatch()
+
+    function extractDate(datetimeString: any) {
+        var dateObject = new Date(datetimeString);
+        var formattedDate = dateObject.toISOString().split('T')[0];
+        return formattedDate;
+    }
+
+    function formatDuration(seconds: any) {
+
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        const formattedMinutes = minutes.toString().padStart(2, '0');
+        const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
+        return `${formattedMinutes}:${formattedSeconds}`;
+    }
+
     return (
         <div className="moods__item play-button-container card h-100 d-flex flex-column justify-content-between col-12" data-bs-toggle='modal'
             onClick={() => {
@@ -58,13 +75,22 @@ function VideoCard({ img_, title, video_id, uploader, views }: Props) {
                         {title}
                     </Link>
                 </h5>
-
-                <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
-                    {uploader}
-                </span>
-                <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
-                    {views && formatViewsCount(views)} views
-                </span>
+                <div className='d-flex flex-row justify-content-between'>
+                    <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                        {uploader}
+                    </span>
+                    <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                        {formatDuration(duration)}
+                    </span>
+                </div>
+                <div className='d-flex flex-row justify-content-between'>
+                    <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                        {views && formatViewsCount(views)} views
+                    </span>
+                    <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                        {extractDate(release_date)}
+                    </span>
+                </div>
             </div>
         </div>
     )

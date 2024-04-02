@@ -20,7 +20,7 @@ type Props = {
 const sortMode = [
     { label: "Most Views" },
     { label: "Recent First" },
-    { label: "Old First" },
+    { label: "Older First" },
 ];
 
 const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
@@ -127,22 +127,6 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
 
         <section className="trending__section pr-24 pl-24 pb-100">
             <div className="trending__selected mb-30 d-flex align-items-center justify-content-center justify-content-lg-between">
-                <div className="select__lefts d-flex align-items-center">
-                    <form
-                        onSubmit={handleSearch}
-                        className="d-flex align-items-center justify-content-between"
-                    >
-                        <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder="Search..." />
-                        <button type="submit" aria-label="submit button">
-                            <IconSearch />
-                        </button>
-                    </form>
-                    <SelectBoxNew
-                        options={sortMode}
-                        value={queryobj.sortMode}
-                        onChange={(newValue) => handleSortChange(newValue)} // Handle changes
-                    />
-                </div>
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                     {allsongs && (
                         <>
@@ -287,6 +271,23 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="home-tab"
                     >
+                        <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
+                            <form
+                                onSubmit={handleSearch}
+                                className="d-flex align-items-center justify-content-between"
+                            >
+                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search All Songs' />
+                                <button type="submit" aria-label="submit button">
+                                    <IconSearch />
+                                </button>
+                            </form>
+                            <SelectBoxNew
+                                options={sortMode}
+                                value={queryobj.sortMode}
+                                onChange={(newValue) => handleSortChange(newValue)} // Handle changes
+                            />
+                        </div>
+
                         <div className="row g-4">
                             {allsongs && (
                                 <>
@@ -319,6 +320,22 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="profile-tab"
                     >
+                        <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
+                            <form
+                                onSubmit={handleSearch}
+                                className="d-flex align-items-center justify-content-between"
+                            >
+                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Music Videos' />
+                                <button type="submit" aria-label="submit button">
+                                    <IconSearch />
+                                </button>
+                            </form>
+                            <SelectBoxNew
+                                options={sortMode}
+                                value={queryobj.sortMode}
+                                onChange={(newValue) => handleSortChange(newValue)} // Handle changes
+                            />
+                        </div>
                         <div className="row g-4">
                             <div className="row g-4">
                                 {musicVidoes && (
@@ -353,6 +370,22 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="profile-tab"
                     >
+                        <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
+                            <form
+                                onSubmit={handleSearch}
+                                className="d-flex align-items-center justify-content-between"
+                            >
+                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Albums' />
+                                <button type="submit" aria-label="submit button">
+                                    <IconSearch />
+                                </button>
+                            </form>
+                            <SelectBoxNew
+                                options={sortMode}
+                                value={queryobj.sortMode}
+                                onChange={(newValue) => handleSortChange(newValue)} // Handle changes
+                            />
+                        </div>
                         <div className="row g-4">
                             <div className="row g-4">
                                 {albums && (
@@ -376,6 +409,22 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="contact-tab"
                     >
+                        <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
+                            <form
+                                onSubmit={handleSearch}
+                                className="d-flex align-items-center justify-content-between"
+                            >
+                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Interviews' />
+                                <button type="submit" aria-label="submit button">
+                                    <IconSearch />
+                                </button>
+                            </form>
+                            <SelectBoxNew
+                                options={sortMode}
+                                value={queryobj.sortMode}
+                                onChange={(newValue) => handleSortChange(newValue)} // Handle changes
+                            />
+                        </div>
                         <div className="row g-4">
                             <div className="row g-4">
                                 {interviews && (
@@ -410,6 +459,13 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="contact-tab"
                     >
+                        <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
+                            <SelectBoxNew
+                                options={sortMode}
+                                value={queryobj.sortMode}
+                                onChange={(newValue) => handleSortChange(newValue)} // Handle changes
+                            />
+                        </div>
                         <div className="row g-4">
                             {gallery && (
                                 <>
@@ -442,6 +498,17 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="contact-tab"
                     >
+                        <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
+                            <form
+                                onSubmit={handleSearch}
+                                className="d-flex align-items-center justify-content-between"
+                            >
+                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Colloboration' />
+                                <button type="submit" aria-label="submit button">
+                                    <IconSearch />
+                                </button>
+                            </form>
+                        </div>
                         <div className="row g-4">
                             {colloborates && (
                                 <>
