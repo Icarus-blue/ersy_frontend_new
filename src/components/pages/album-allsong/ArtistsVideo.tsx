@@ -25,6 +25,11 @@ const sortMode = [
     { label: "Older First" },
 ];
 
+const gallerySortMode = [
+    { label: "Recent First" },
+    { label: "Older First" },
+];
+
 const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [query1, setQuery1] = useState('')
@@ -45,6 +50,10 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
     const [queryobj1, setQueryObj1] = useState({
         artist: artist,
         sortMode: 'Most Views',
+    });
+    const [queryobj2, setQueryObj2] = useState({
+        artist: artist,
+        sortMode: 'Recent First',
     });
     const router = useRouter();
 
@@ -98,6 +107,20 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
         setIsLoading(false)
         getData()
     }, [queryobj1])
+
+    useEffect(() => {
+        console.log(queryobj2);
+        
+        // const str = JSON.stringify(queryobj1);
+        // setIsLoading(true)
+        // const getData = async () => {
+        //     let data = await fetchData('/data/getallsongsbysort', 1, 32, str, null, null, 'interviews')
+        //     data.videos && setAllSongs(data.videos)
+        //     setInterviews(data.videos)
+        // }
+        // setIsLoading(false)
+        // getData()
+    }, [queryobj2])
 
     const handleSearchMusicVideos = async (e: ChangeEvent<HTMLFormElement>) => {
         try {
@@ -202,6 +225,13 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
 
     const handleSortChange1 = (newSortMode: { label: string }) => {
         setQueryObj1(prevState => ({
+            ...prevState,
+            sortMode: newSortMode.label,
+        }));
+    };
+
+    const handleSortChange2 = (newSortMode: { label: string }) => {
+        setQueryObj2(prevState => ({
             ...prevState,
             sortMode: newSortMode.label,
         }));
@@ -650,11 +680,12 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="contact-tab"
                     >
+                        <h3>Gallery</h3>
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <SelectBoxNew
-                                options={sortMode}
-                                value={queryobj.sortMode}
-                                onChange={(newValue) => handleSortChange(newValue)} // Handle changes
+                                options={gallerySortMode}
+                                value={queryobj2.sortMode}
+                                onChange={(newValue) => handleSortChange2(newValue)} // Handle changes
                             />
                         </div>
                         <div className="row g-4">

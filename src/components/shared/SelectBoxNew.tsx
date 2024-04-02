@@ -11,7 +11,7 @@ type Props = {
   value: string;
 };
 export default function SelectBoxNew({ options, onChange, value }: Props) {
-  const [selected, setSelected] = useState(options[2]);
+  const [selected, setSelected] = useState(options[1]);
   return (
     <div className="select-box">
       <Listbox value={selected} onChange={(newValue) => {
