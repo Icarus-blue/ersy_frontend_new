@@ -78,8 +78,8 @@ const Artist = () => {
       <div className="container-fluid">
         <div className="artist__allhead d-flex">
           <Image
-            width={390}
-            height={390}
+            width={300}
+            height={300}
             style={{ borderRadius: '50%' }}
             src={`https://ersy.com/img/profile/${artist.img_}`}
             priority={true}
@@ -87,8 +87,8 @@ const Artist = () => {
             className="flex-shrink-0 h-auto"
           />
           <div className="artist__allcontent">
-            <h1 className="white mb-16 fw-500 d-block">{artist.name_}</h1>
-            <span className="white fs-20 mb-10 ">Real name is {artist.alternate_name} was born in  {artist.birthplace} on   {birthday}</span>
+            <h3 className="white mb-16 fw-500">{artist.name_}</h3>
+            <span className="white fs-15 mb-10 ">Real name is {artist.alternate_name} was born in  {artist.birthplace} on   {birthday}</span>
             <div className="responsive-table">
               <table>
                 <thead>
@@ -129,14 +129,14 @@ const Artist = () => {
             </div>
 
           </div>
-          <Link
-            href="artists"
-            className="view__btn white d-flex align-items-end gap-2"
-          >
-            View All
-            <IconArrowNarrowRight />
-          </Link>
         </div>
+        <Link
+          href="artists"
+          className="view__btn white d-flex align-items-end gap-2"
+        >
+          View All
+          <IconArrowNarrowRight />
+        </Link>
       </div>
     </section>
   );

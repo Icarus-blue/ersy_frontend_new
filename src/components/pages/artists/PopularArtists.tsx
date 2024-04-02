@@ -422,7 +422,6 @@ const PopularArtists = () => {
                   </div>
                 </>
               )}
-
             </div>
           </div>
           <div
