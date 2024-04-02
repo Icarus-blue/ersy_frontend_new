@@ -28,8 +28,9 @@ const sortMode = [
 const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [query1, setQuery1] = useState('')
+    const [query2, setQuery2] = useState('')
     const [allsongs, setAllSongs] = useState(null)
-    const [musicVidoes, setMusicVidoes] = useState(null)
+    const [musicVidoes, setMusicVideos] = useState(null)
     const [interviews, setInterviews] = useState(null)
     const [gallery, setGallery] = useState(null)
     const [colloborates, setColloborates] = useState(null)
@@ -57,7 +58,9 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                 }
                 const str = JSON.stringify(query);
                 const data = await fetchData('/data/getallsongsbysearch', 1, 50, str)
-                if (!data.status) return false
+                if (!data.status) {
+                    setIsLoading(false)
+                }
                 setAllSongs(data.videos)
                 setIsLoading(false)
             }
@@ -72,16 +75,38 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
         const getData = async () => {
             let data = await fetchData('/data/getallsongsbysort', 1, 32, str)
             data.videos && setAllSongs(data.videos)
+            setMusicVideos(data.videos)
         }
         setIsLoading(false)
         getData()
     }, [queryobj])
 
-    const handleSearchMusicVideos = () => {
+    const handleSearchMusicVideos = async (e: ChangeEvent<HTMLFormElement>) => {
         try {
+            setIsLoading(true)
+            e.preventDefault()
+            const formData = new FormData(e.target)
+            if (formData.get('query') == '') {
+                const data = await fetchData('/data/getallsongs', 1, 12, artist)
 
+                setMusicVideos(data.videos)
+                setIsLoading(false)
+            } else {
+                const query = {
+                    q: formData.get('query'),
+                    artist: artist
+                }
+                const str = JSON.stringify(query);
+                const data = await fetchData('/data/getallsongsbysearch', 1, 50, str)
+
+                if (!data.status) {
+                    setIsLoading(false)
+                }
+                setMusicVideos(data.videos)
+                setIsLoading(false)
+            }
         } catch (error) {
-
+            console.log(error);
         }
     }
 
@@ -132,7 +157,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
         const getMusicVideos = async () => {
             try {
                 const data = await fetchData('/data/musicvideos', 1, 12, artist)
-                setMusicVidoes(data.videos)
+                setMusicVideos(data.videos)
             } catch (error) {
                 console.log(error);
             }
@@ -337,7 +362,9 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="home-tab"
                     >
+                        <h3>All Songs</h3>
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
+
                             <form
                                 onSubmit={handleSearchAllSongs}
                                 className="d-flex align-items-center justify-content-between"
@@ -347,6 +374,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                     <IconSearch />
                                 </button>
                             </form>
+
                             <SelectBoxNew
                                 options={sortMode}
                                 value={queryobj.sortMode}
@@ -396,12 +424,13 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="profile-tab"
                     >
+                        <h3>Music Videos</h3>
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <form
                                 onSubmit={handleSearchMusicVideos}
                                 className="d-flex align-items-center justify-content-between"
                             >
-                                {/* <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Music Videos' /> */}
+                                <input type="text" name="query" onChange={(e) => setQuery2(e.target.value)} value={query2} placeholder='Search Music Videos' />
                                 <button type="submit" aria-label="submit button">
                                     <IconSearch />
                                 </button>
@@ -414,30 +443,40 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         </div>
                         <div className="row g-4">
                             <div className="row g-4">
-                                {musicVidoes && (
+                                {isLoading ? (
+                                    <div className="w100 d-flex justify-content-center">
+                                        <Loader />
+                                    </div>
+                                ) : (
                                     <>
-                                        {musicVidoes.map(({ id, ...props }: any) => (
-                                            <div
-                                                key={id}
-                                                className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6"
-                                            >
-                                                <VideoCard key={id} {...props} link="album-allsong" />
-                                            </div>
-                                        ))}
+                                        {musicVidoes && (
+                                            <>
+                                                {musicVidoes.map(({ id, ...props }: any) => (
+                                                    <div
+                                                        key={id}
+                                                        className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6"
+                                                    >
+                                                        <VideoCard key={id} {...props} link="album-allsong" />
+                                                    </div>
+                                                ))}
+                                            </>
+                                        )}
+                                        <div className="text-center mt-60 " >
+                                            <Link href="#" onClick={async (e) => {
+                                                e.preventDefault()
+                                                setIsLoading(true)
+                                                const data = await fetchData('/data/videos', musicVidoes.length <= 12 ? 2 : musicVidoes.length / 12 + 1, 12, artist)
+                                                setMusicVideos((prev: any) => ([...prev, ...data.videos]))
+                                                setIsLoading(false)
+                                            }} className="cmn__simple2" >
+                                                {isLoading ? 'loading...' : 'Load More'}
+                                            </Link>
+                                        </div>
                                     </>
                                 )}
+
                             </div>
-                            <div className="text-center mt-60 " >
-                                <Link href="#" onClick={async (e) => {
-                                    e.preventDefault()
-                                    setIsLoading(true)
-                                    const data = await fetchData('/data/videos', musicVidoes.length <= 12 ? 2 : musicVidoes.length / 12 + 1, 12, artist)
-                                    setMusicVidoes((prev: any) => ([...prev, ...data.videos]))
-                                    setIsLoading(false)
-                                }} className="cmn__simple2" >
-                                    {isLoading ? 'loading...' : 'Load More'}
-                                </Link>
-                            </div>
+
                         </div>
                     </div>
                     <div
