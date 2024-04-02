@@ -354,7 +354,9 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
 
                         <div className="row g-4">
                             {isLoading ? (
-                                <Loader />
+                                <div className="w100 d-flex justify-content-center">
+                                    <Loader />
+                                </div>
                             ) : (
                                 <>
                                     {allsongs && (
