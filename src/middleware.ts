@@ -4,9 +4,9 @@ import Cookies from "js-cookie";
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("access_token");
-  if (!token?.value) {
-    return NextResponse.redirect(new URL("/signin", request.url));
-  }
+  // if (!token?.value) {
+  //   return NextResponse.redirect(new URL("/signin", request.url));
+  // }
 }
 
 // import { NextResponse } from "next/server";
