@@ -36,6 +36,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
     const [query2, setQuery2] = useState('')
     const [query3, setQuery3] = useState('')
     const [query4, setQuery4] = useState('')
+    const [query5, setQuery5] = useState('')
     const [allsongs, setAllSongs] = useState(null)
     const [musicVidoes, setMusicVideos] = useState(null)
     const [interviews, setInterviews] = useState(null)
@@ -177,11 +178,31 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
         }
     }
 
-    const handleSearchColloboration = () => {
+    const handleSearchColloboration = async (e: ChangeEvent<HTMLFormElement>) => {
         try {
+            setIsLoading(true)
+            e.preventDefault()
+            const formData = new FormData(e.target)            
+            if (formData.get('query') == '') {
+                const data = await fetchData('/data/albums', 1, 12, artist)
+                setAlbums(data.albums)
+                setIsLoading(false)
+            } else {
+                const query = {
+                    q: formData.get('query'),
+                    artist: artist
+                }
+                const str = JSON.stringify(query);
+                const data = await fetchData('/data/getallalbumsbysearch', 1, 50, str)
 
+                if (!data.status) {
+                    setIsLoading(false)
+                }
+                setAlbums(data.albums)
+                setIsLoading(false)
+            }
         } catch (error) {
-
+            console.log(error);
         }
     }
 
@@ -717,12 +738,13 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         role="tabpanel"
                         aria-labelledby="contact-tab"
                     >
+                        <h3>Collaborations</h3>
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <form
                                 onSubmit={handleSearchColloboration}
                                 className="d-flex align-items-center justify-content-between"
                             >
-                                {/* <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Colloboration' /> */}
+                                <input type="text" name="query" onChange={(e) => setQuery5(e.target.value)} value={query5} placeholder='Search Colloboration' />
                                 <button type="submit" aria-label="submit button">
                                     <IconSearch />
                                 </button>
