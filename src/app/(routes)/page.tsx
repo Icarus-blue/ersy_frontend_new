@@ -13,12 +13,9 @@ function page({ }: Props) {
                 <span>An extensive library of music artist, videos, interviews and more.</span>
                 <Search />
             </div>
-
-
             <div className='mt-5'>
                 <Artists />
             </div>
-          
         </div>
     )
 }

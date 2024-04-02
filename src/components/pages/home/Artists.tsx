@@ -35,7 +35,6 @@ const Artists = () => {
     getArtists()
   }, [])
   return (
-    // <!--artits section-->
     <section className="artits__section ralt pr-24 pl-24 pb-100">
       <div className="container-fluid p-0">
         <div className="header__text mb-24 d-flex align-items-center justify-content-between flex-wrap gap-2">
