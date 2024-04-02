@@ -42,6 +42,10 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
         artist: artist,
         sortMode: 'Most Views',
     });
+    const [queryobj1, setQueryObj1] = useState({
+        artist: artist,
+        sortMode: 'Most Views',
+    });
     const router = useRouter();
 
     const handleSearchAllSongs = async (e: ChangeEvent<HTMLFormElement>) => {
@@ -82,6 +86,18 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
         setIsLoading(false)
         getData()
     }, [queryobj])
+
+    useEffect(() => {
+        const str = JSON.stringify(queryobj1);
+        setIsLoading(true)
+        const getData = async () => {
+            let data = await fetchData('/data/getallsongsbysort', 1, 32, str, null, null, 'interviews')
+            data.videos && setAllSongs(data.videos)
+            setInterviews(data.videos)
+        }
+        setIsLoading(false)
+        getData()
+    }, [queryobj1])
 
     const handleSearchMusicVideos = async (e: ChangeEvent<HTMLFormElement>) => {
         try {
@@ -179,6 +195,13 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
 
     const handleSortChange = (newSortMode: { label: string }) => {
         setQueryObj(prevState => ({
+            ...prevState,
+            sortMode: newSortMode.label,
+        }));
+    };
+
+    const handleSortChange1 = (newSortMode: { label: string }) => {
+        setQueryObj1(prevState => ({
             ...prevState,
             sortMode: newSortMode.label,
         }));
@@ -589,8 +612,8 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                             </form>
                             <SelectBoxNew
                                 options={sortMode}
-                                value={queryobj.sortMode}
-                                onChange={(newValue) => handleSortChange(newValue)} // Handle changes
+                                value={queryobj1.sortMode}
+                                onChange={(newValue) => handleSortChange1(newValue)} // Handle changes
                             />
                         </div>
                         <div className="row g-4">
