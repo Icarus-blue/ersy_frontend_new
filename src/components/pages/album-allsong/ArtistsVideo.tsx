@@ -696,7 +696,7 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                                             key={props.id_}
                                             className="col-xxl-2 col-xl-2 col-lg-3 col-md-6 col-sm-3"
                                         >
-                                            <ArtistGalleryCard thumbnail={props.thumbnail_url} id_={props.id_} sourceurl={props.url} />
+                                            <ArtistGalleryCard thumbnail={props.thumbnail_url} id_={props.id_} sourceurl={props.source} date={props.date_} />
                                         </div>
                                     ))}
                                 </>
