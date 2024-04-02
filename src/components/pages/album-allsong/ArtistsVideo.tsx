@@ -7,10 +7,12 @@ import AlbumCard from "../home/AlbumCard";
 import ShortMusicVideo from "@/components/shared/ShortMusicVideo";
 import Colloborate from '../home/Colloborate'
 import { fetchData } from "@/utils/fetchData";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { IconFilter, IconSearch } from "@tabler/icons-react";
 import SelectBoxNew from "@/components/shared/SelectBoxNew";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import Loader from "@/components/shared/Loader";
 
 type Props = {
     sectionTitle: string;
@@ -25,7 +27,7 @@ const sortMode = [
 
 const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
     const [isLoading, setIsLoading] = useState(false)
-    const [query, setQuery] = useState('')
+    const [query1, setQuery1] = useState('')
     const [allsongs, setAllSongs] = useState(null)
     const [musicVidoes, setMusicVidoes] = useState(null)
     const [interviews, setInterviews] = useState(null)
@@ -34,16 +36,78 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
     const [albums, setAlbums] = useState(null)
     const [twitter, setTwitter] = useState(null)
     const [queryobj, setQueryObj] = useState({
-        genre: 'All Songs',
+        artist: artist,
         sortMode: 'Most Views',
     });
+    const router = useRouter();
 
-    const handleSearch = () => {
+    const handleSearchAllSongs = async (e: ChangeEvent<HTMLFormElement>) => {
+        try {
+            setIsLoading(true)
+            e.preventDefault()
+            const formData = new FormData(e.target)
+            if (formData.get('query') == '') {
+                const data = await fetchData('/data/getallsongs', 1, 12, artist)
+                if (!data.status) return false
+                setAllSongs(data.videos)
+                setIsLoading(false)
+            } else {
+                const query = {
+                    q: formData.get('query'),
+                    artist: artist
+                }
+                const str = JSON.stringify(query);
+                const data = await fetchData('/data/getallsongsbysearch', 1, 50, str)
+                setAllSongs(data.videos)
+                setIsLoading(false)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
+    useEffect(() => {
+        const str = JSON.stringify(queryobj);
+        const getData = async () => {
+            let data = await fetchData('/data/getallsongsbysort', 1, 32, str)
+            data.videos && setAllSongs(data.videos)
+        }
+        getData()
+    }, [queryobj])
+
+    const handleSearchMusicVideos = () => {
+        try {
+
+        } catch (error) {
+
+        }
+    }
+
+    const handleSearchAlbums = () => {
+        try {
+
+        } catch (error) {
+
+        }
+    }
+
+    const handleSearchColloboration = () => {
+        try {
+
+        } catch (error) {
+
+        }
+    }
+
+    const handleSearchInterviews = () => {
+        try {
+
+        } catch (error) {
+
+        }
     }
 
     const handleSortChange = (newSortMode: { label: string }) => {
-        console.log(newSortMode);
         setQueryObj(prevState => ({
             ...prevState,
             sortMode: newSortMode.label,
@@ -273,10 +337,10 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                     >
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <form
-                                onSubmit={handleSearch}
+                                onSubmit={handleSearchAllSongs}
                                 className="d-flex align-items-center justify-content-between"
                             >
-                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search All Songs' />
+                                <input type="text" name="query" onChange={(e) => setQuery1(e.target.value)} value={query1} placeholder='Search All Songs' />
                                 <button type="submit" aria-label="submit button">
                                     <IconSearch />
                                 </button>
@@ -289,18 +353,25 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                         </div>
 
                         <div className="row g-4">
-                            {allsongs && (
+                            {isLoading ? (
+                                <Loader />
+                            ) : (
                                 <>
-                                    {allsongs.map(({ id, ...props }: any) => (
-                                        <div
-                                            key={id}
-                                            className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6"
-                                        >
-                                            <VideoCard key={id} {...props} link="album-allsong" />
-                                        </div>
-                                    ))}
+                                    {allsongs && (
+                                        <>
+                                            {allsongs.map(({ id, ...props }: any) => (
+                                                <div
+                                                    key={id}
+                                                    className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6"
+                                                >
+                                                    <VideoCard key={id} {...props} link="album-allsong" />
+                                                </div>
+                                            ))}
+                                        </>
+                                    )}
                                 </>
                             )}
+
                         </div>
                         <div className="text-center mt-60 " >
                             <Link href="#" onClick={async (e) => {
@@ -322,10 +393,10 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                     >
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <form
-                                onSubmit={handleSearch}
+                                onSubmit={handleSearchMusicVideos}
                                 className="d-flex align-items-center justify-content-between"
                             >
-                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Music Videos' />
+                                {/* <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Music Videos' /> */}
                                 <button type="submit" aria-label="submit button">
                                     <IconSearch />
                                 </button>
@@ -372,10 +443,10 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                     >
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <form
-                                onSubmit={handleSearch}
+                                onSubmit={handleSearchAlbums}
                                 className="d-flex align-items-center justify-content-between"
                             >
-                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Albums' />
+                                {/* <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Albums' /> */}
                                 <button type="submit" aria-label="submit button">
                                     <IconSearch />
                                 </button>
@@ -411,10 +482,10 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                     >
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <form
-                                onSubmit={handleSearch}
+                                onSubmit={handleSearchInterviews}
                                 className="d-flex align-items-center justify-content-between"
                             >
-                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Interviews' />
+                                {/* <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Interviews' /> */}
                                 <button type="submit" aria-label="submit button">
                                     <IconSearch />
                                 </button>
@@ -500,10 +571,10 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                     >
                         <div className="trending__selected select__lefts d-flex justify-content-between" style={{ marginBottom: 30 }}>
                             <form
-                                onSubmit={handleSearch}
+                                onSubmit={handleSearchColloboration}
                                 className="d-flex align-items-center justify-content-between"
                             >
-                                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Colloboration' />
+                                {/* <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} placeholder='Search Colloboration' /> */}
                                 <button type="submit" aria-label="submit button">
                                     <IconSearch />
                                 </button>
