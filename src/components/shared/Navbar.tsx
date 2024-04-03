@@ -48,16 +48,17 @@ const Navbar = () => {
               <div className="d-flex logo__wrap align-items-center justify-content-between position-relative">
                 <Link
                   href="/"
-                  className="logo"
+                  className="logo d-flex gap-3"
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   <Image
-                    width={180}
-                    height={52}
-                    src="/img/logo/logo.png"
+                    width={40}
+                    height={40}
+                    src="/img/logo/favicon.png"
                     alt="img"
                     priority={true}
                   />
+                  <h2>ERSY</h2>
                 </Link>
                 <div
                   className="position-absolute  menu-close-button d-xl-none"
@@ -216,7 +217,7 @@ const Navbar = () => {
                             width={'100%'}
                             height={'100%'}
                           />
-                          <span className="d-flex fs-14 fw-500 pra align-items-center gap-1 d-none d-sm-block">
+                          <span className="d-flex fs-16 fw-700 pra align-items-center gap-1 d-none d-sm-block">
                             {user?.first_name} {user?.last_name}
                             <IconChevronDown />
                           </span>
@@ -231,7 +232,7 @@ const Navbar = () => {
                                 <h5 className="fs-20 fw-600 white  mb-0">
                                   {user?.first_name} {user?.last_name}
                                 </h5>
-                                <span className="d-block fw-400 pra fs-16">
+                                <span className="d-block fw-400 white fs-16">
                                   {user?.email}
                                 </span>
                               </div>
@@ -243,7 +244,7 @@ const Navbar = () => {
                                   className="link d-flex align-items-center gap-2 dropdown-item"
                                 >
                                   <i className="bi bi-bell fs-20"></i>
-                                  <span className="d-block fs-16 pra fw-500 ">
+                                  <span className="d-block fs-16 white fw-500 ">
                                     {" "}
                                     Profile{" "}
                                   </span>
@@ -308,7 +309,7 @@ const Navbar = () => {
                                   className="link d-flex align-items-center gap-2 dropdown-item"
                                 >
                                   <i className="bi bi-file-earmark-plus fs-20"></i>
-                                  <span className="d-block fs-16 pra fw-500 ">
+                                  <span className="d-block fs-16 white fw-500 ">
                                     {" "}
                                     Log Out{" "}
                                   </span>

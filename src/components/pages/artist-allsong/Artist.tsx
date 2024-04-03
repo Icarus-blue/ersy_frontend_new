@@ -71,7 +71,7 @@ const Artist = () => {
       return num.toString();
     }
   }
-
+    
   if (!artist) return
   return (
     <section className="genres__section custom__space pr-24 pl-24 pb-60">
@@ -104,39 +104,39 @@ const Artist = () => {
 
             <div className="d-flex justify-content-start" style={{ padding: 30 }}>
               <button className="cmn__simple3">Follow Artist</button>
-              <Link href={artist?.wikipedia} target="_blank" className="p-2 white fs-20 mb-16 fw-500 d-block">
+              <Link href={artist?.wikipedia} target="_blank" className="p-2 white fs-20  fw-500 d-block">
                 <span><IconBrandWikipedia /></span>
               </Link>
-              <Link href={artist?.facebook} target="_blank" className="p-2 white fs-20 mb-16 fw-500 d-block">
+              <Link href={artist?.facebook} target="_blank" className="p-2 white fs-20  fw-500 d-block">
                 <span><IconBrandFacebookFilled style={{ color: 'blue' }} /></span>
               </Link>
 
-              <Link href={artist?.instagram} target="_blank" className="p-2 white fs-20 mb-16 fw-500 d-block">
+              <Link href={artist?.instagram} target="_blank" className="p-2 white fs-20  fw-500 d-block">
                 <span><IconBrandInstagram /></span>
               </Link>
 
-              <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20 mb-16 fw-500 d-block">
+              <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20  fw-500 d-block">
                 <span><IconBrandYoutubeFilled style={{ color: 'red' }} /></span>
               </Link>
 
-              <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20 mb-16 fw-500 d-block">
+              <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20  fw-500 d-block">
                 <span><IconBrandTwitterFilled /></span>
               </Link>
 
-              <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20 mb-16 fw-500 d-block">
+              <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20  fw-500 d-block">
                 <span><img src='https://ersy.com/img/social-icon__soundcloud.svg' alt="Logo" width="30" height="30" ></img></span>
               </Link>
             </div>
 
           </div>
+          <Link
+            href="artists"
+            className="view__btn white d-flex align-items-end gap-2"
+          >
+            View All
+            <IconArrowNarrowRight />
+          </Link>
         </div>
-        <Link
-          href="artists"
-          className="view__btn white d-flex align-items-end gap-2"
-        >
-          View All
-          <IconArrowNarrowRight />
-        </Link>
       </div>
     </section>
   );

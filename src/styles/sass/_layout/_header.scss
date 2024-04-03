@@ -69,7 +69,7 @@
   left: 0;
   transition: all 0.7s;
   overflow-y: scroll;
-  border-right: 1px solid var(--headborder);
+  border-right: 2px solid #25A56A;
   .sidebar__wrapbox {
     padding: 20px 30px 30px;
     @include breakpoint(max-xxxl) {
@@ -84,15 +84,16 @@
       right: 0;
       top: 5px;
       padding: 5px;
-      background-color: #272726;
+      background-color: #25A56A;
       border-radius: 100%;
+      color:white
     }
     &::before {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      border-bottom: 1px solid var(--headborder);
+      border-bottom: 2px solid #25A56A;
       content: "";
     }
     @include breakpoint(max-xl) {
@@ -131,8 +132,8 @@
       a {
         padding: 15px 20px 16px;
         font-size: 18px;
-        font-weight: 500;
-        color: var(--pra);
+        font-weight: 700;
+        color: #25A56A;
         transition: all 0.4s;
         @include bodyfont;
         svg {
@@ -303,7 +304,7 @@
   padding: 16px 24px;
   width: calc(100% - 240px);
   left: 240px;
-  border-bottom: 1px solid var(--headborder);
+  border-bottom: 1px solid #25A56A;
   .max-xl-none {
     @include breakpoint(max-xl) {
       display: none;
@@ -354,7 +355,9 @@
       form {
         width: 500px;
         padding: 5px 15px;
-        background: var(--cmnbg);
+        border :2px solid #25A56A;
+        border-radius: 50px;
+        // background: var(--cmnbg);
         input,
         button {
           background: transparent;
@@ -388,7 +391,7 @@
       transition: all 0.6s;
       position: relative;
       a {
-        color: var(--pra);
+        // color: var(--pra);
         font-weight: 500;
         font-size: 16px;
         transition: all 0.3s;
@@ -541,7 +544,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: var(--border);
+      background: #25A56A;
       position: relative;
       &::before {
         position: absolute;
@@ -607,8 +610,8 @@
         border: unset;
         box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.06);
         border-radius: 16px;
-        background: var(--cmnbg);
-        border: 1px solid var(--border);
+        background: #25A56A;
+        border: 1px solid #25A56A;
         .jenny {
           width: 80px;
           height: 80px;
@@ -690,8 +693,8 @@
         border: unset;
         box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.06);
         border-radius: 16px;
-        background: var(--cmnbg);
-        border: 1px solid var(--border);
+        background: #25A56A;
+        border: 1px solid #25A56A;
         .dropdown-item {
           padding: 0;
           gap: 10px;

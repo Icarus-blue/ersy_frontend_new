@@ -55,14 +55,14 @@ const SignInForm = () => {
         <div className="row g-4 justify-content-center">
           <div className="col-lg-6">
             <div className="event__createcover checkout__wrapper">
-              <h3 className="white white text-center mb-30">Sign In</h3>
+              <h3 className="white pra text-center mb-30">Sign In</h3>
               <form action="#shanta" className="cover__form" onSubmit={handleLogin} ref={form}>
                 <div className="row g-4">
                   <div className="col-lg-12">
                     <div className="cover__grp">
                       <label
                         htmlFor="eemail"
-                        className="mb-16 fs-18 d-block fw-500 white bodyfont"
+                        className="mb-16 fs-18 d-block fw-500 pra bodyfont"
                       >
                         Email Address <span className="base2">*</span>
                       </label>

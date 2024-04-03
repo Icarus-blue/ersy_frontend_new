@@ -154,7 +154,7 @@
 
 //moods Section
 .moods__item {
-  background: var(--cmnbg);
+  background: var(--pra);
   padding: 24px 24px;
   transition: all 0.4s;
   .thumb {
@@ -1466,7 +1466,7 @@
 //trending Section
 .trending__selected {
   // border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  // border-bottom: 2px solid #25A56A;
   padding: 12px 0;
   .select__lefts {
     gap: 24px;
@@ -1496,9 +1496,10 @@
     }
   }
   form {
-    background: var(--cmnbg);
+    // background: var(--cmnbg);
     padding: 0 20px;
     border-radius: 100px;
+    border: 2px solid #25A56A;
     input {
       background: transparent;
       border: unset;
@@ -1516,18 +1517,20 @@
     }
   }
   .nav {
-    background: var(--cmnbox);
+    // background: var(--cmnbox);
     border-radius: 100px;
-    border: unset;
+    border-width: 2px;
+    border-color: #25A56A;
+    // border: unset;
     .nav-item {
       .nav-link {
         padding: 8px 21px;
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 700;
         outline: none;
         border: none;
         @include bodyfont;
-        color: var(--pra);
+        color: #25A56A;
         border-radius: 100px;
         &.active {
           color: var(--white);
@@ -1933,7 +1936,7 @@
   
 
   .cover__form {
-    background: var(--cmnbox);
+    // background: var(--cmnbox);
     padding: 40px 40px;
 
     .cover__grp {
@@ -2009,6 +2012,7 @@
 .checkout__wrapper {
   padding: 60px 60px;
   background: var(--cmnbox);
+  border-radius: 50px;
   .cover__form {
     padding: 0 0;
   }

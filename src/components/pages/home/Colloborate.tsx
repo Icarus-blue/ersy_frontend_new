@@ -35,7 +35,7 @@ const Colloborate = ({ id_ }: Props) => {
                             width: '100%'
                         }}
                     />
-                    <text>{artist?.name_}</text>
+                    <text style={{color:'black'}}>{artist?.name_}</text>
                 </a>
             </div>
         </div>

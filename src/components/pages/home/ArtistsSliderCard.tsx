@@ -52,9 +52,9 @@ const ArtistsSliderCard = ({ img_, name_, id_, views, monthly_listeners, faceboo
             justifyContent: 'center',
             textAlign: 'center'
           }}>
-          <h5 style={{ textAlign: 'center', marginTop: 10 }}>
+          <span style={{ textAlign: 'center', marginTop: 10 }}>
             {name_}
-          </h5>
+          </span>
           <button style={{
             backgroundColor: '#0ca4da',
             color: 'white',
@@ -72,18 +72,18 @@ const ArtistsSliderCard = ({ img_, name_, id_, views, monthly_listeners, faceboo
             <span>Follow</span>
           </button>
 
-          <h5 style={{ textAlign: 'center' }}>
+          <span style={{ textAlign: 'center' }}>
             {formatNumber(views)} total views
-          </h5>
-          <h5 style={{ textAlign: 'center' }}>
+          </span>
+          <span style={{ textAlign: 'center' }}>
             {formatNumber(monthly_listeners)} monthly listeners
-          </h5>
-          <h5 style={{ textAlign: 'center' }}>
+          </span>
+          <span style={{ textAlign: 'center' }}>
             {formatNumber(soundcloud_count + spotify_count + twitter_count + youtube_count + facebook_count + instagram_count)} social followers
-          </h5>
-          <h5 style={{ textAlign: 'center' }}>
+          </span>
+          <span style={{ textAlign: 'center' }}>
             {gallery_count} photos
-          </h5>
+          </span>
         </div>
       </div>
     </div>

@@ -38,10 +38,10 @@ const Artists = () => {
     <section className="artits__section ralt pr-24 pl-24 pb-100">
       <div className="container-fluid p-0">
         <div className="header__text mb-24 d-flex align-items-center justify-content-between flex-wrap gap-2">
-          <h2>Popular Artists</h2>
+          <h4>Popular Artists</h4>
           <Link
             href="artists"
-            className="view__btn white d-flex align-items-center gap-2"
+            className="view__btn d-flex pra  align-items-center gap-2"
           >
             View All
             <IconArrowNarrowRight />
@@ -49,69 +49,69 @@ const Artists = () => {
         </div>
         {
           !isLoading ? (
-             <Swiper
-          modules={[Navigation, Scrollbar]}
-          speed={200}
-          spaceBetween={12}
-          loop={true}
-          breakpoints={{
-            320: {
-              slidesPerView: 1,
-              scrollbar: {
-                dragSize: 100,
-              },
-            },
-            575: {
-              slidesPerView: 2,
-            },
-            900: {
-              slidesPerView: 3,
-            },
-            1199: {
-              slidesPerView: 3,
-            },
-            1600: {
-              slidesPerView: 4,
-              scrollbar: {
-                dragSize: 240,
-              },
-            },
-          }}
-          scrollbar={{
-            el: ".swiper-scrollbar",
-          }}
-          navigation={{
-            nextEl: ".cmn-button-next2",
-            prevEl: ".cmn-button-prev2",
-          }}
-          className="swiper trending__slider"
-        >
-          <div className="swiper-wrapper">
-            {artists.map(({ ...props }) => (
-              <SwiperSlide key={props.id_}>
-                <ArtistsSliderCard {...props} />
-              </SwiperSlide>
-            ))}
-          </div>
-          <div className="d-flex gap-4 mt-40 align-items-center">
-            <div className="gap-1 d-flex">
-              <div className="cmn-button-prev2">
-                <IconChevronLeft />
+            <Swiper
+              modules={[Navigation, Scrollbar]}
+              speed={200}
+              spaceBetween={2}
+              loop={false}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  scrollbar: {
+                    dragSize: 100,
+                  },
+                },
+                575: {
+                  slidesPerView: 2,
+                },
+                900: {
+                  slidesPerView: 3,
+                },
+                1199: {
+                  slidesPerView: 3,
+                },
+                1600: {
+                  slidesPerView: 4,
+                  scrollbar: {
+                    dragSize: 240,
+                  },
+                },
+              }}
+              scrollbar={{
+                el: ".swiper-scrollbar",
+              }}
+              navigation={{
+                nextEl: ".cmn-button-next2",
+                prevEl: ".cmn-button-prev2",
+              }}
+              className="swiper trending__slider "
+            >
+              <div className="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-4">
+                {artists.map(({ ...props }) => (
+                  <SwiperSlide key={props.id_}>
+                    <ArtistsSliderCard {...props} />
+                  </SwiperSlide>
+                ))}
               </div>
-              <div className="cmn-pagination"></div>
-              <div className="cmn-button-next2">
-                <IconChevronRight />
+              <div className="d-flex gap-4 mt-40 align-items-center">
+                <div className="gap-1 d-flex">
+                  <div className="cmn-button-prev2">
+                    <IconChevronLeft />
+                  </div>
+                  <div className="cmn-pagination"></div>
+                  <div className="cmn-button-next2">
+                    <IconChevronRight />
+                  </div>
+                </div>
+                <div className="swiper-scrollbar"></div>
               </div>
-            </div>
-            <div className="swiper-scrollbar"></div>
-          </div>
-        </Swiper>
+            </Swiper>
           ) : (
-              <div className="w100 d-flex justify-content-center">
-                <Loader/>
-              </div>
+            <div className="w100 d-flex justify-content-center">
+              <Loader />
+            </div>
           )
-       }
+        }
       </div>
     </section>
   );

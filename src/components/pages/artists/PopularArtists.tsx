@@ -395,7 +395,7 @@ const PopularArtists = () => {
                       {artists.map((props) => (
                         <div
                           key={props.id_}
-                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                          className="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-4"
                         >
                           <ArtistsSliderCard {...props} />
                         </div>
@@ -438,7 +438,7 @@ const PopularArtists = () => {
                       {artists.map((props) => (
                         <div
                           key={props.id_}
-                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                          className="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-4"
                         >
                           <ArtistsSliderCard {...props} />
                         </div>
@@ -481,7 +481,7 @@ const PopularArtists = () => {
                       {artists.map((props) => (
                         <div
                           key={props.id_}
-                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                          className="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-4"
                         >
                           <ArtistsSliderCard {...props} />
                         </div>
@@ -524,7 +524,7 @@ const PopularArtists = () => {
                       {artists.map((props) => (
                         <div
                           key={props.id_}
-                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                          className="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-4"
                         >
                           <ArtistsSliderCard {...props} />
                         </div>
@@ -567,7 +567,7 @@ const PopularArtists = () => {
                       {artists.map((props) => (
                         <div
                           key={props.id_}
-                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                          className="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-4"
                         >
                           <ArtistsSliderCard {...props} />
                         </div>
@@ -610,7 +610,7 @@ const PopularArtists = () => {
                       {artists.map((props) => (
                         <div
                           key={props.id_}
-                          className="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                          className="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-4"
                         >
                           <ArtistsSliderCard {...props} />
                         </div>

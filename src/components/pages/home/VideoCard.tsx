@@ -67,7 +67,6 @@ function VideoCard({ img_, title, video_id, uploader, views, release_date, durat
             <div className="content d-flex flex-column">
                 <h5 className="mb-2">
                     <Link href={`#`} target='_blank' data-bs-toggle='modal'
-
                         onClick={() => {
                             dispatch(setVideoId(video_id))
                         }}
@@ -76,18 +75,18 @@ function VideoCard({ img_, title, video_id, uploader, views, release_date, durat
                     </Link>
                 </h5>
                 <div className='d-flex flex-row justify-content-between'>
-                    <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                    <span style={{ color: 'white', fontSize: '0.8rem' }}>
                         {uploader}
                     </span>
-                    <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                    <span style={{ color: 'white', fontSize: '0.8rem' }}>
                         {formatDuration(duration)}
                     </span>
                 </div>
                 <div className='d-flex flex-row justify-content-between'>
-                    <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                    <span style={{ color: 'white', fontSize: '0.8rem' }}>
                         {views && formatViewsCount(views)} views
                     </span>
-                    <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                    <span style={{ color: 'white', fontSize: '0.8rem' }}>
                         {extractDate(release_date)}
                     </span>
                 </div>

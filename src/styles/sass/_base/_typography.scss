@@ -1,10 +1,10 @@
 body {
-  color: var(--white);
+  color: var(--body);
   padding: 0;
   margin: 0;
   overflow-x: hidden;
   overflow-y: scroll !important;
-  background-color: var(--body);
+  background-color: var(--white);
 }
 h1,
 h2,
@@ -12,7 +12,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--white);
+  color: #25A56A;
   @include headfont;
   a {
     color: var(--title);
@@ -755,22 +755,22 @@ p {
 // select Box scss
 .select-box {
   background: transparent;
-  color: var(--white);
-
+  color: var(--pra);
+  font-weight: 700; 
   ul {
     position: absolute;
     z-index: 1;
-    background: #0f0f0f;
+    background: var(--pra);
     border-radius: 5px;
     width: fit-content;
     margin-top: 16px;
     width: fit-content;
-    border: 1px solid var(--border);
-
+    border: 1px solid var(--pra);
+    color: white;
     li {
       background: none;
       padding-right: 10px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--pra);
       cursor: pointer;
       line-height: 40px;
       min-height: 40px;
@@ -1221,7 +1221,7 @@ p {
   background: var(--cmnbg);
 }
 .mainbg {
-  background: var(--bgsection);
+  background: var(--white);
 }
 .bgwhtie {
   background: var(--white);

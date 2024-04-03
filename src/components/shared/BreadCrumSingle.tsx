@@ -13,7 +13,7 @@ const BreadCrumSingle = ({ page }: { page: string }) => {
             </Link>
           </li>
           <li>
-            <IconChevronRight className="white" />
+            <IconChevronRight className="pra" />
           </li>
           <li className="white fw-500 fs-16 bodyfont">{page}</li>
         </ul>

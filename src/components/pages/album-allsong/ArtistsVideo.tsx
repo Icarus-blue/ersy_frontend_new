@@ -31,7 +31,7 @@ const gallerySortMode = [
 ];
 
 const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [query1, setQuery1] = useState('')
     const [query2, setQuery2] = useState('')
     const [query3, setQuery3] = useState('')
@@ -60,13 +60,12 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
 
     const handleSearchAllSongs = async (e: ChangeEvent<HTMLFormElement>) => {
         try {
-            setIsLoading(true)
             e.preventDefault()
             const formData = new FormData(e.target)
             if (formData.get('query') == '') {
                 const data = await fetchData('/data/getallsongs', 1, 12, artist)
                 setAllSongs(data.videos)
-                setIsLoading(false)
+
             } else {
                 const query = {
                     q: formData.get('query'),
@@ -75,19 +74,19 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                 const str = JSON.stringify(query);
                 const data = await fetchData('/data/getallsongsbysearch', 1, 50, str)
                 if (!data.status) {
-                    setIsLoading(false)
+
                 }
                 setAllSongs(data.videos)
-                setIsLoading(false)
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false)
         }
     }
 
     useEffect(() => {
         const str = JSON.stringify(queryobj);
-        setIsLoading(true)
         const getData = async () => {
             let data = await fetchData('/data/getallsongsbysort', 1, 32, str)
             data.videos && setAllSongs(data.videos)
@@ -182,27 +181,23 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
         try {
             setIsLoading(true)
             e.preventDefault()
-            const formData = new FormData(e.target)            
+            const formData = new FormData(e.target)
             if (formData.get('query') == '') {
-                const data = await fetchData('/data/albums', 1, 12, artist)
-                setAlbums(data.albums)
-                setIsLoading(false)
+                const data = await fetchData('/data/colloborates', 1, 12, artist)
+                setColloborates(data.colloborates)
             } else {
                 const query = {
                     q: formData.get('query'),
                     artist: artist
                 }
                 const str = JSON.stringify(query);
-                const data = await fetchData('/data/getallalbumsbysearch', 1, 50, str)
-
-                if (!data.status) {
-                    setIsLoading(false)
-                }
-                setAlbums(data.albums)
-                setIsLoading(false)
+                const data = await fetchData('/data/colloboratesbysearch', 1, 50, str)
+                setColloborates(data.colloborates)
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -214,7 +209,6 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
             if (formData.get('query') == '') {
                 const data = await fetchData('/data/getallsongs', 1, 12, artist, null, null, 'interviews')
                 setInterviews(data.videos)
-                setIsLoading(false)
             } else {
                 const query = {
                     q: formData.get('query'),
@@ -222,15 +216,12 @@ const ArtistsVideo = ({ sectionTitle, artist }: Props) => {
                 }
                 const str = JSON.stringify(query);
                 const data = await fetchData('/data/getallsongsbysearch', 1, 50, str, null, null, 'interviews')
-
-                if (!data.status) {
-                    setIsLoading(false)
-                }
                 setInterviews(data.videos)
-                setIsLoading(false)
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false)
         }
     }
 

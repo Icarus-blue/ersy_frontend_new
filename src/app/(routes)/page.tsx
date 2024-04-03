@@ -9,8 +9,8 @@ function page({ }: Props) {
     return (
         <div className='h-auto p-5 mt-5'>
             <div className='d-flex flex-column align-items-center justify-content-center w-100 mt-5' style={{ gap: '1em' }}>
-                <span className="fs-1 text-capitalize headfont d-block">Search over 1000+ artists</span>
-                <span>An extensive library of music artist, videos, interviews and more.</span>
+                <span className="fs-1 pra text-capitalize headfont d-block">Search over 1000+ artists</span>
+                <span className='pra'>An extensive library of music artist, videos, interviews and more.</span>
                 <Search />
             </div>
             <div className='mt-5'>
