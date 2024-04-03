@@ -5,6 +5,7 @@ body {
   overflow-x: hidden;
   overflow-y: scroll !important;
   background-color: var(--white);
+  font-family: 'Times New Roman', Times, serif;
 }
 h1,
 h2,
@@ -13,10 +14,12 @@ h4,
 h5,
 h6 {
   color: #25A56A;
-  @include headfont;
+  font-family: 'Times New Roman', Times, serif;
+  // @include headfont;
   a {
     color: var(--title);
-    @include headfont;
+    // @include headfont;
+    font-family: 'Times New Roman', Times, serif;
   }
 }
 button {

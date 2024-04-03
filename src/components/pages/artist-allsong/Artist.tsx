@@ -71,11 +71,18 @@ const Artist = () => {
       return num.toString();
     }
   }
-    
+
   if (!artist) return
   return (
     <section className="genres__section custom__space pr-24 pl-24 pb-60">
       <div className="container-fluid">
+        <Link
+          href="artists"
+          className="view__btn pra fw-700 d-flex justify-content-end gap-2 "
+        >
+          View All
+          <IconArrowNarrowRight />
+        </Link>
         <div className="artist__allhead d-flex">
           <Image
             width={300}
@@ -87,8 +94,8 @@ const Artist = () => {
             className="flex-shrink-0 h-auto"
           />
           <div className="artist__allcontent">
-            <h3 className="white mb-16 fw-500">{artist.name_}</h3>
-            <span className="white fs-15 mb-10 ">Real name is {artist.alternate_name} was born in  {artist.birthplace} on   {birthday}</span>
+            <h3 className="pra mb-16 fw-700">{artist.name_}</h3>
+            <span className="pra fs-15 fw-500 mb-10 ">Real name is {artist.alternate_name} was born in  {artist.birthplace} on   {birthday}</span>
             <div className="responsive-table">
               <table>
                 <thead>
@@ -129,13 +136,7 @@ const Artist = () => {
             </div>
 
           </div>
-          <Link
-            href="artists"
-            className="view__btn white d-flex align-items-end gap-2"
-          >
-            View All
-            <IconArrowNarrowRight />
-          </Link>
+
         </div>
       </div>
     </section>
