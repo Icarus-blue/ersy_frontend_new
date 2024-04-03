@@ -107,7 +107,8 @@
 	border-radius: 10px;
 	font-size: 18px;
 	font-weight: 500;
-	@include bodyfont;
+	font-family: 'Times New Roman', Times, serif;
+	// @include bodyfont;
 	color: var(--white);
 	transition: all 0.4s;
 	&:hover{

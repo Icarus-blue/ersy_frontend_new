@@ -96,7 +96,7 @@ const Artist = () => {
           <div className="artist__allcontent">
             <h3 className="pra mb-16 fw-700">{artist.name_}</h3>
             <span className="pra fs-15 fw-500 mb-10 ">Real name is {artist.alternate_name} was born in  {artist.birthplace} on   {birthday}</span>
-            <div className="responsive-table">
+            <div className="responsive-table pra">
               <table>
                 <thead>
                   <tr>
@@ -109,28 +109,28 @@ const Artist = () => {
               </table>
             </div>
 
-            <div className="d-flex justify-content-start" style={{ padding: 30 }}>
+            <div className="d-flex justify-content-start" style={{ margin: 30 }}>
               <button className="cmn__simple3">Follow Artist</button>
-              <Link href={artist?.wikipedia} target="_blank" className="p-2 white fs-20  fw-500 d-block">
+              <Link href={artist?.wikipedia} target="_blank" className="p-2 pra fs-20  fw-500 d-block">
                 <span><IconBrandWikipedia /></span>
               </Link>
-              <Link href={artist?.facebook} target="_blank" className="p-2 white fs-20  fw-500 d-block">
-                <span><IconBrandFacebookFilled style={{ color: 'blue' }} /></span>
+              <Link href={artist?.facebook} target="_blank" className="p-2 pra fs-20  fw-500 d-block">
+                <span><IconBrandFacebook /></span>
               </Link>
 
-              <Link href={artist?.instagram} target="_blank" className="p-2 white fs-20  fw-500 d-block">
+              <Link href={artist?.instagram} target="_blank" className="p-2 pra fs-20  fw-500 d-block">
                 <span><IconBrandInstagram /></span>
               </Link>
 
-              <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20  fw-500 d-block">
-                <span><IconBrandYoutubeFilled style={{ color: 'red' }} /></span>
+              <Link href={artist?.youtube} target="_blank" className="p-2 pra fs-20  fw-500 d-block">
+                <span><IconBrandYoutube /></span>
               </Link>
 
-              <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20  fw-500 d-block">
+              <Link href={artist?.youtube} target="_blank" className="p-2 pra fs-20  fw-500 d-block">
                 <span><IconBrandTwitterFilled /></span>
               </Link>
 
-              <Link href={artist?.youtube} target="_blank" className="p-2 white fs-20  fw-500 d-block">
+              <Link href={artist?.youtube} target="_blank" className="p-2 pra fs-20  fw-500 d-block">
                 <span><img src='https://ersy.com/img/social-icon__soundcloud.svg' alt="Logo" width="30" height="30" ></img></span>
               </Link>
             </div>

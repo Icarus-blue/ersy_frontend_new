@@ -64,7 +64,7 @@ const SignInForm = () => {
                         htmlFor="eemail"
                         className="mb-16 fs-18 d-block fw-500 pra bodyfont"
                       >
-                        Email Address <span className="base2">*</span>
+                        Email Address
                       </label>
                       <input type="email" name="email" id="eemail" placeholder="Email" />
                     </div>

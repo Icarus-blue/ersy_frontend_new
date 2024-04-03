@@ -1465,8 +1465,8 @@
 
 //trending Section
 .trending__selected {
-  // border-top: 1px solid var(--border);
-  // border-bottom: 2px solid #25A56A;
+  border-top: 1px solid #25A56A;
+  border-bottom: 2px solid #25A56A;
   padding: 12px 0;
   .select__lefts {
     gap: 24px;

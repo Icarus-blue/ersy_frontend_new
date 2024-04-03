@@ -10,7 +10,7 @@ const PasswordField = () => {
         htmlFor="phones"
         className="mb-16 fs-18 d-block fw-500 white bodyfont"
       >
-        Password <span className="base2">*</span>
+        Password
       </label>
       <input
         name="password"
