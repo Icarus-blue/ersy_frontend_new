@@ -50,21 +50,21 @@ function AlbumCard({ img_, artist_name, name_, label, release_date }: Props) {
             </div>
             <div className="content d-flex flex-column">
                 <div className='d-flex flex-row justify-content-between'>
-                    <h5 className="mb-2">
+                    <h5 className="mb-2 white">
                         {name_}
                     </h5>
-                    <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                    <span style={{ color: 'white', fontSize: '0.8rem' }}>
                         {extractDate(release_date)}
                     </span>
                 </div>
-                <span style={{ color: '#5c5c5c', fontSize: '0.8rem' }}>
+                <span style={{ color: 'white', fontSize: '0.8rem' }}>
                     {label}
                 </span>
-                <div className="responsive-table">
+                <div className="responsive-table white">
                     <table>
                         <thead>
                             <tr>
-                                <th>Duration 00:13:24</th>
+                                <th >Duration 00:13:24</th>
                                 <th>Official Duration 02:34:43</th>
                             </tr>
                             <tr>

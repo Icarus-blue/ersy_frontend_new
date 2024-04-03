@@ -69,7 +69,7 @@
   left: 0;
   transition: all 0.7s;
   overflow-y: scroll;
-  border-right: 2px solid #25A56A;
+  // border-right: 2px solid #25A56A;
   .sidebar__wrapbox {
     padding: 20px 30px 30px;
     @include breakpoint(max-xxxl) {
@@ -93,7 +93,7 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      border-bottom: 2px solid #25A56A;
+      // border-bottom: 2px solid #25A56A;
       content: "";
     }
     @include breakpoint(max-xl) {
@@ -304,7 +304,7 @@
   padding: 16px 24px;
   width: calc(100% - 240px);
   left: 240px;
-  border-bottom: 1px solid #25A56A;
+  // border-bottom: 1px solid #25A56A;
   .max-xl-none {
     @include breakpoint(max-xl) {
       display: none;

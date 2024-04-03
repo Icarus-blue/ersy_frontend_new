@@ -52,13 +52,13 @@ const Navbar = () => {
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   <Image
-                    width={40}
-                    height={40}
+                    width={30}
+                    height={30}
                     src="/img/logo/favicon.png"
                     alt="img"
                     priority={true}
                   />
-                  <h2>ERSY</h2>
+                  <h4>ERSY</h4>
                 </Link>
                 <div
                   className="position-absolute  menu-close-button d-xl-none"
@@ -151,7 +151,7 @@ const Navbar = () => {
             >
               {/*==============main menu===== */}
               <ul className={`main-menuone d-flex align-items-center ${!authenticated && 'w-100 '} justify-content-end`}>
-                {/* <li className="small__logo">
+                <li className="small__logo">
                   <Link href="/">
                     <Image
                       width={68}
@@ -160,7 +160,7 @@ const Navbar = () => {
                       alt="img"
                     />
                   </Link>
-                </li> */}
+                </li>
                 {
                   authenticated && (
                     <li className="search__show">
@@ -185,7 +185,7 @@ const Navbar = () => {
                         <Link href="signin" className="cmn--btn cmn--btnone">
                           <span>Sign in</span>
                         </Link>
-                        <Link href="signup" className="cmn--btn cmn--btntwo">
+                        <Link href="signup" className="cmn--btn cmn--btnone">
                           <span>Signup</span>
                         </Link>
                       </li>
@@ -250,27 +250,27 @@ const Navbar = () => {
                                   </span>
                                 </Link>
                               </li>
-                              {/* <li className="mb-16">
+                              <li className="mb-16">
                                 <Link
                                   href="#"
                                   className="link d-flex align-items-center gap-2 dropdown-item"
                                 >
                                   <i className="bi bi-bell fs-20"></i>
-                                  <span className="d-block fs-16 pra fw-500 ">
+                                  <span className="d-block fs-16 white fw-500 ">
                                     {" "}
                                     Theme{" "}
                                   </span>
                                 </Link>
-                              </li> */}
+                              </li>
                             </ul>
                             <ul className="list">
-                              {/* <li className="mb-16">
+                              <li className="mb-16">
                                 <Link
                                   href="#"
                                   className="link d-flex align-items-center gap-2 dropdown-item"
                                 >
                                   <i className="bi bi-credit-card-2-back fs-20"></i>
-                                  <span className="d-block fs-16 pra fw-500 ">
+                                  <span className="d-block fs-16 white fw-500 ">
                                     {" "}
                                     Help{" "}
                                   </span>
@@ -282,7 +282,7 @@ const Navbar = () => {
                                   className="link d-flex align-items-center gap-2 dropdown-item"
                                 >
                                   <i className="bi bi-credit-card-2-back fs-20"></i>
-                                  <span className="d-block fs-16 pra fw-500 ">
+                                  <span className="d-block fs-16 white fw-500 ">
                                     {" "}
                                     Send Feedback{" "}
                                   </span>
@@ -294,12 +294,12 @@ const Navbar = () => {
                                   className="link d-flex align-items-center gap-2 dropdown-item"
                                 >
                                   <i className="bi bi-gear fs-20"></i>
-                                  <span className="d-block fs-16 pra fw-500 ">
+                                  <span className="d-block fs-16 white fw-500 ">
                                     {" "}
                                     Settings{" "}
                                   </span>
                                 </Link>
-                              </li> */}
+                              </li>
                               <li>
                                 <Link
                                   href="#"
