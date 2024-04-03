@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="row g-4">
             <div className="col-lg-6 col-md-6 col-sm-6 quick__space">
               <div className="footer__widget">
-                <h4 className="white mb-30">Quick Link</h4>
+                <h4 className="pra mb-30">Quick Link</h4>
                 <div className="link__attach d-flex justify-content-between justify-content-lg-start">
                   <ul className="link">
                     <li className="mb-16">
