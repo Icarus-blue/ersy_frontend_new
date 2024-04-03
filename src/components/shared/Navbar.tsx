@@ -151,7 +151,7 @@ const Navbar = () => {
             >
               {/*==============main menu===== */}
               <ul className={`main-menuone d-flex align-items-center ${!authenticated && 'w-100 '} justify-content-end`}>
-                <li className="small__logo">
+                {/* <li className="small__logo">
                   <Link href="/">
                     <Image
                       width={68}
@@ -160,8 +160,8 @@ const Navbar = () => {
                       alt="img"
                     />
                   </Link>
-                </li>
-                {
+                </li> */}
+                {/* {
                   authenticated && (
                     <li className="search__show">
                       <form action="#0" className="d-flex align-items-center">
@@ -176,7 +176,7 @@ const Navbar = () => {
                     </li>
 
                   )
-                }
+                } */}
 
                 {
                   !authenticated ? (

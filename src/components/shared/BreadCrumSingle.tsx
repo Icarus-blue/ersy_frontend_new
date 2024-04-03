@@ -7,14 +7,14 @@ const BreadCrumSingle = ({ page }: { page: string }) => {
     <section className="breadcrumnd__banner custom__space mr-24 ml-24">
       <div className="container-flud p-0">
         <ul className="breadcrund__content mb-40 d-flex gap-1 flex-wrap align-items-center">
-          <li className="fs-16 bodyfont fw-500">
+          {/* <li className="fs-16 bodyfont fw-500">
             <Link href="/" className="pra">
               Home
             </Link>
           </li>
           <li>
             <IconChevronRight className="pra" />
-          </li>
+          </li> */}
           <li className="white fw-500 fs-16 bodyfont">{page}</li>
         </ul>
       </div>
