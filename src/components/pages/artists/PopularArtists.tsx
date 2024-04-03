@@ -171,19 +171,19 @@ const PopularArtists = () => {
           </h5>
           <div className="row mt-4">
             <div className="col-lg-6 mb-4">
-              <div className="fw-600 mb-2">GENDER</div>
+              <div className="fw-600 pra mb-2">GENDER</div>
               <div className="d-flex flex-wrap g-4">
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   Male
                   <input type="radio" name="gender" value="male" onChange={handleFilterChange} />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   Female
                   <input type="radio" name="gender" value="female" onChange={handleFilterChange} />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   None
                   <input type="radio" name="gender" value="none" onChange={handleFilterChange} />
                   <button type="button" className="custom-radio"></button>
@@ -191,24 +191,24 @@ const PopularArtists = () => {
               </div>
             </div>
             <div className="col-lg-6 mb-4">
-              <div className="fw-600 mb-2">AGE</div>
+              <div className="fw-600 mb-2 pra">AGE</div>
               <div className="d-flex flex-wrap g-4">
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   {"< 20"}
                   <input type="radio" name="age" value="a" onChange={handleFilterChange} />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   20 - 30
                   <input type="radio" name="age" value="b" onChange={handleFilterChange} />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   30 - 40
                   <input type="radio" name="age" value="c" onChange={handleFilterChange} />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   {"> 40"}
                   <input type="radio" name="age" value="d" onChange={handleFilterChange} />
                   <button type="button" className="custom-radio"></button>
@@ -216,14 +216,14 @@ const PopularArtists = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="fw-600 mb-2">GROUP TYPE</div>
+              <div className="fw-600 mb-2 pra">GROUP TYPE</div>
               <div className="d-flex flex-wrap g-4">
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   Solo
                   <input type="radio" name="groupType" value="solo" onChange={handleFilterChange} />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   Group
                   <input type="radio" name="groupType" value="group" onChange={handleFilterChange} />
                   <button type="button" className="custom-radio"></button>
@@ -231,29 +231,29 @@ const PopularArtists = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="fw-600 mb-2">LABELS</div>
+              <div className="fw-600 mb-2 pra">LABELS</div>
               <div className="d-flex flex-wrap g-4">
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   Interscope Records
                   <input type="radio" name="labels" value='interscope' />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   Atlantic Records
                   <input type="radio" name="labels" value='Atlantic' />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   Bear Records
                   <input type="radio" name="labels" value='Bear' />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   Fox Records
                   <input type="radio" name="labels" value='Fox' />
                   <button type="button" className="custom-radio"></button>
                 </label>
-                <label className="tt-buttons">
+                <label className="tt-buttons pra">
                   Rabbit Records
                   <input type="radio" name="labels" value='Rabbit' />
                   <button type="button" className="custom-radio"></button>

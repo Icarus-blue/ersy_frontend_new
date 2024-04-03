@@ -89,15 +89,18 @@
 }
 
 .cmn__simple2{
-	padding: 10px 32px 15px;
+	padding: 10px 16px 10px;
 	background: #25A56A;
 	font-size: 18px;
 	font-weight: 500;
-	@include bodyfont;
+	border-radius: 10px;
+	// @include bodyfont;
 	color: var(--white);
 	transition: all 0.4s;
 	&:hover{
-		background: var(--base);
+		color: #25A56A;
+		background-color:white;
+		border:1px solid #25A56A
 	}
 }
 
