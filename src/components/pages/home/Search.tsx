@@ -5,17 +5,13 @@ type Props = {}
 
 function Search({ }: Props) {
     return (
-        <div className='trending__selected mb-30 d-flex align-items-center justify-content-center justify-content-lg-between'>
-            <div className='select__lefts d-flex align-items-center'>
-                <form className="d-flex align-items-center justify-content-between"
-                >
-                    <input type="text" name="query" placeholder="Search..." />
-                    <button type="submit" aria-label="submit button">
-                        <IconSearch />
-                    </button>
-                </form>
+        <div className='w-100 d-flex justify-content-center'>
+            <div className='d-flex justify-content-center align-items-center w-50 searchareasty'>
+                <IconSearch size={30} />
+                <input className='w-100 p-3  text-dark rounded-left searchinpsty' placeholder='Search ...' />
+                <button className='btnsty'>Find</button>
             </div>
-        </div >
+        </div>
     )
 }
 

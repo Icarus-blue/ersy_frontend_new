@@ -41,7 +41,7 @@
 
 /*CSS Table Of Content Ends Here*/
 // bootstrap
-@import "~bootstrap/dist/css/bootstrap.min.css";  
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
 // -- Audio
 @import "audio/audioplayer";
@@ -185,5 +185,29 @@ video::-webkit-media-controls-timeline {
     td {
       padding: 5px;
     }
+  }
+}
+
+.btnsty {
+  border-radius: 10px;
+  background-color: #0FAFE6;
+  color: white;
+  padding: 16px 30px;
+}
+
+.searchinpsty {
+  border: none;
+  outline: none;
+}
+
+.iconlocation {}
+
+.searchareasty {
+  border: 1px solid rgb(209, 208, 208);
+  padding: 0px 0px 0px 10px;
+  border-radius: 10px;
+
+  &:hover {
+    border-color: #0FAFE6;
   }
 }
