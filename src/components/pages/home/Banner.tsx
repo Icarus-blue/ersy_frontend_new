@@ -39,7 +39,7 @@ const Banner = () => {
               >
                 <SwiperSlide className="banner__slide swiper-slide d-flex align-items-center bn__thumb1">
                   <div className="banner__content">
-                    <h1 className="mb-24">
+                    <h1 className="mb-24 white">
                       Ersy Where Music Comes to Life
                     </h1>
                     <p className="fs-16 pra2 mb-40">
