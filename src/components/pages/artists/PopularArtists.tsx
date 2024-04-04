@@ -2,7 +2,7 @@
 import { artistCardData } from "@/../public/data/artistsCardData";
 import LoadMore from "@/components/shared/LoadMore";
 import SelectBoxNew from "@/components/shared/SelectBoxNew";
-import { IconFilter, IconSearch } from "@tabler/icons-react";
+import { IconFilter, IconSearch, IconSortDescending } from "@tabler/icons-react";
 import ArtistsSliderCard from "../home/ArtistsSliderCard";
 import { fetchData } from "@/utils/fetchData";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -274,11 +274,19 @@ const PopularArtists = () => {
               <IconSearch />
             </button>
           </form>
-          <SelectBoxNew
-            options={sortMode}
-            value={queryobj.sortMode}
-            onChange={(newValue) => handleSortChange(newValue)} // Handle changes
-          />
+          <div className="d-flex align-items-center">
+            <svg width="16" height="16" viewBox="0 0 24 24" className="pra" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 5H24" stroke="currentColor" stroke-width="2.5"></path>
+              <path d="M4 11.6667H20" stroke="currentColor" stroke-width="2.5"></path>
+              <path d="M8 18.3333H16" stroke="currentColor" stroke-width="2.5"></path>
+            </svg>
+            <SelectBoxNew
+              options={sortMode}
+              value={queryobj.sortMode}
+              onChange={(newValue) => handleSortChange(newValue)} // Handle changes
+            />
+          </div>
+
         </div>
         <ul className="nav nav-tabs" id="myTab" role="tablist">
           <li className="nav-item" role="presentation">

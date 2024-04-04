@@ -59,14 +59,14 @@ const ArtistsSliderCard = ({ img_, name_, id_, views, monthly_listeners, faceboo
             backgroundColor: '#0ca4da',
             color: 'white',
             borderRadius: '5px',
-            padding: '6px',
+            padding: '5px 16px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '10px',
+            gap: '7px',
             margin: 10
           }}>
-            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" style={{ width: '20px', height: '20px', marginTop: 3 }}> {/* Adjust the size of the icon as needed */}
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" style={{ width: '20px', height: '20px', marginTop: 3 }}>
               <path fill="transparent" stroke="currentColor" fillRule="evenodd" clipRule="evenodd" d="M2.7899 3.82249C5.17644 1.3925 9.04578 1.3925 11.4323 3.82249L12 4.4005L12.5677 3.82249C14.9542 1.3925 18.8236 1.3925 21.2101 3.82249C23.5966 6.25247 23.5966 10.1923 21.2101 12.6222L12 22L2.7899 12.6222C0.403366 10.1923 0.403366 6.25247 2.7899 3.82249Z" strokeLinecap="round"></path>
             </svg>
             <span>Follow</span>
