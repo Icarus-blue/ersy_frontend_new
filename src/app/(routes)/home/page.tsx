@@ -27,8 +27,8 @@ const Page = () => {
       {/* <Workout start={0} end={6} /> */}
       {/* <FeaturedShows /> */}
       {/* <Podcasts /> */}
-      <Product sectionTitle="Product" componentData={productData} />
-      <LatestPost />
+      {/* <Product sectionTitle="Product" componentData={productData} />
+      <LatestPost /> */}
     </>
   );
 };

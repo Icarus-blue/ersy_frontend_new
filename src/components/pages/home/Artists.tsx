@@ -8,8 +8,8 @@ import {
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 //@ts-ignore
-import { Navigation, Scrollbar } from "swiper";
-import ArtistsSliderCard from "./ArtistsSliderCard";
+import { Navigation, Scrollbar, Autoplay } from "swiper";
+import ArtistsSliderCardHome from "./ArtistsSliderCardHome";
 import { toast } from "react-toastify";
 import api from "@/lib/api";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ const Artists = () => {
 
   const getArtists = async () => {
     try {
-      const res = await api.server.GET(`/data/artists?page=1&pageSize=10`, '')
+      const res = await api.server.GET(`/data/artists?page=1&pageSize=15`, '')
       const data = await res.json()
       if (data.status) setArtists(prev => ([...prev, ...data.artists]))
     } catch (error: any) {
@@ -39,10 +39,7 @@ const Artists = () => {
       <div className="container-fluid p-0">
         <div className="header__text mb-24 d-flex align-items-center justify-content-between flex-wrap gap-2">
           <h4>Popular Artists</h4>
-          <Link
-            href="artists"
-            className="view__btn d-flex pra  align-items-center gap-2"
-          >
+          <Link href="artists" className="view__btn d-flex pra align-items-center gap-2">
             View All
             <IconArrowNarrowRight />
           </Link>
@@ -50,58 +47,40 @@ const Artists = () => {
         {
           !isLoading ? (
             <Swiper
-              modules={[Navigation, Scrollbar]}
-              speed={200}
+              modules={[Navigation, Scrollbar, Autoplay]}
+              speed={300}
               spaceBetween={2}
-              loop={false}
+              loop={true}
+              autoplay={{
+                delay: 1500,
+                disableOnInteraction: false,
+              }}
+              slidesPerView={6}
               breakpoints={{
                 320: {
-                  slidesPerView: 1,
-                  scrollbar: {
-                    dragSize: 100,
-                  },
-                },
-                575: {
                   slidesPerView: 2,
                 },
-                900: {
-                  slidesPerView: 3,
-                },
-                1199: {
-                  slidesPerView: 3,
-                },
-                1600: {
+                768: {
                   slidesPerView: 4,
-                  scrollbar: {
-                    dragSize: 240,
-                  },
+                },
+                1024: {
+                  slidesPerView: 6,
                 },
               }}
-              scrollbar={{
-                el: ".swiper-scrollbar",
-              }}
-              navigation={{
-                nextEl: ".cmn-button-next2",
-                prevEl: ".cmn-button-prev2",
-              }}
-              className="swiper trending__slider "
+              scrollbar={{ el: ".swiper-scrollbar" }}
+              navigation={{ nextEl: ".cmn-button-next2", prevEl: ".cmn-button-prev2" }}
+              className="swiper trending__slider"
             >
-              <div className="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-4">
-                {artists.map(({ ...props }) => (
-                  <SwiperSlide key={props.id_}>
-                    <ArtistsSliderCard {...props} />
-                  </SwiperSlide>
-                ))}
-              </div>
+              {artists.map(({ ...props }) => (
+                <SwiperSlide key={props.id_}>
+                  <ArtistsSliderCardHome {...props} />
+                </SwiperSlide>
+              ))}
               <div className="d-flex gap-4 mt-40 align-items-center">
                 <div className="gap-1 d-flex">
-                  <div className="cmn-button-prev2">
-                    <IconChevronLeft />
-                  </div>
+                  <div className="cmn-button-prev2"><IconChevronLeft /></div>
                   <div className="cmn-pagination"></div>
-                  <div className="cmn-button-next2">
-                    <IconChevronRight />
-                  </div>
+                  <div className="cmn-button-next2"><IconChevronRight /></div>
                 </div>
                 <div className="swiper-scrollbar"></div>
               </div>
@@ -115,6 +94,7 @@ const Artists = () => {
       </div>
     </section>
   );
+
 };
 
 export default Artists;

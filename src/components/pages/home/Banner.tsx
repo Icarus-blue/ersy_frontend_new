@@ -148,7 +148,7 @@ const Banner = () => {
                     <SwiperSlide key={image} className="swiper-slide side__thumbs__custom">
                       <Image
                         width={700}
-                        height={520}
+                        height={300}
                         src={image}
                         alt="img"
                       />
