@@ -11,24 +11,12 @@ import {
 } from "@tabler/icons-react";
 import { v4 as uuidv4 } from "uuid";
 export const sideBarData = [
-  {
-    id: uuidv4(),
-    menuTitle: "Home",
-    icon: <IconSmartHome />,
-    path: "/home",
-    // menuItems: [
-    //   // {
-    //   //   id: uuidv4(),
-    //   //   title: "Home One",
-    //   //   dropDownPath: "/",
-    //   // },
-    //   {
-    //     id: uuidv4(),
-    //     title: "Home Two",
-    //     dropDownPath: "/home-two",
-    //   },
-    // ],
-  },
+  // {
+  //   id: uuidv4(),
+  //   menuTitle: "Home",
+  //   icon: <IconSmartHome />,
+  //   path: "/home", 
+  // },
   {
     id: uuidv4(),
     menuTitle: "Artists",
