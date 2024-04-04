@@ -55,7 +55,7 @@ const SignInForm = () => {
         <div className="row g-4 justify-content-center">
           <div className="col-lg-6">
             <div className="event__createcover checkout__wrapper">
-              <h3 className="white pra text-center mb-30">Sign In</h3>
+              <h3 className="white text-center mb-30">Sign In</h3>
               <form action="#shanta" className="cover__form" onSubmit={handleLogin} ref={form}>
                 <div className="row g-4">
                   <div className="col-lg-12">
@@ -82,13 +82,13 @@ const SignInForm = () => {
                           id="flexCheckDefault"
                         />
                         <label
-                          className="form-check-label mt-1 fs-16 fw-400 bodyfont pra"
+                          className="form-check-label mt-1 fs-16 fw-400 bodyfont white"
                           htmlFor="flexCheckDefault"
                         >
                           Remember me
                         </label>
                       </div>
-                      <Link href="/reset-password" className="base fs-14 fw-500 bodyfont">
+                      <Link href="/reset-password" className="white fs-14 fw-500 bodyfont">
                         Forget Password?
                       </Link>
                     </div>
@@ -111,7 +111,7 @@ const SignInForm = () => {
                         <span>Continue with Google</span>
                       </button>
                     </div>
-                    <p className="ffs-16 text-center bodyfont pra fw-500">
+                    <p className="ffs-16 text-center bodyfont white fw-500">
                       Don’t have an account?{" "}
                       <Link href="signup" className="base">
                         Sign up now!

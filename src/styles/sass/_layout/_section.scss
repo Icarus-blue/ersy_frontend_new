@@ -1529,7 +1529,7 @@
         font-weight: 700;
         outline: none;
         border: none;
-        @include bodyfont;
+        // @include bodyfont;
         color: #25A56A;
         border-radius: 100px;
         &.active {
